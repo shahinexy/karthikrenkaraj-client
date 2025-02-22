@@ -1,6 +1,5 @@
-
-import { AiOutlinePlus } from "react-icons/ai";
 import TampleCard from "@/components/cards/TampleCard";
+import AddTampleModal from "@/components/home/AddTampleModal";
 
 
 const CommonLayoutHomePage = () => {
@@ -13,9 +12,7 @@ const CommonLayoutHomePage = () => {
           Welcome Back , Arik Lee
         </h1>
         <div className="inline-block">
-          <button className='bg-gradient-to-b from-[#32CD32] to-[#249A24] rounded-3xl py-[10] md:px-7 px-3 text-xl text-white flex gap-2 items-center'>
-            <AiOutlinePlus /> Add Terminal
-          </button>
+          <AddTampleModal />
         </div>
       </div>
 

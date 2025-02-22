@@ -41,7 +41,7 @@ const Navbar = () => {
               <Link
               key={link.path}
               href={`${link.path}`}
-              className={`${pathName === `${link.path}` && "bg-primary text-black px-5 py-2 rounded-3xl"} text-white hover:bg-primary hover:text-black px-5 py-2 rounded-3xl duration-300`}
+              className={`${pathName === `${link.path}` ? "bg-primary text-black px-5 py-2 rounded-3xl" : "text-white"} hover:bg-primary hover:text-black px-5 py-2 rounded-3xl duration-300`}
             >
               {link.name}
             </Link>
