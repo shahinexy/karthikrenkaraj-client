@@ -1,8 +1,6 @@
-import Image from "next/image";
+
 import { AiOutlinePlus } from "react-icons/ai";
-import temple from '../../../public/images/Frame 1321315273.png'
-import { SlLocationPin } from "react-icons/sl";
-import Link from "next/link";
+import TampleCard from "@/components/cards/TampleCard";
 
 
 const CommonLayoutHomePage = () => {
@@ -25,16 +23,7 @@ const CommonLayoutHomePage = () => {
 
       <div className="grid md:grid-cols-5 grid-cols-2 gap-7 md:mt-12 mt-7">
         {
-          temples.map((item, idx) => (<Link href={`/product/${item}`} key={idx}>
-          <div  className="bg-white rounded-3xl p-3 space-y-2">
-            <Image src={temple} height={1000} width={1000} alt="temple" className="rounded-3xl" />
-            <h3 className="text-xl font-semibold text-center">Puliyur Temple</h3>
-            <div className="flex gap-1 justify-center items-center text-sm ">
-              <SlLocationPin />
-              <p > Puliyur, Kerala, South India</p>
-            </div>
-          </div>
-          </Link>))
+          temples.map((item, idx) => <TampleCard key={idx}/>)
         }
       </div>
     </div>
