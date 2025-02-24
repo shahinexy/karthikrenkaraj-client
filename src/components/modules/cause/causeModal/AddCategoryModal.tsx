@@ -11,7 +11,6 @@ import { FieldValues } from "react-hook-form";
 import { FaSave } from "react-icons/fa";
 import { useState } from "react";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
-import MyFormInput from "@/components/form/MyFormInput";
 import MyFormSelect from "@/components/form/MyFormSelect";
 
 const AddCategoryModal = () => {
@@ -22,11 +21,11 @@ const AddCategoryModal = () => {
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="bg-white rounded-3xl md:py-2 py-2 md:px-3 text-xl text-black flex gap-2 items-center">
+      <DialogTrigger className="bg-white rounded-3xl md:py-2 py-2 md:px-3 px-2 text-black flex gap-2 items-center">
         <AiOutlinePlus /> Add Category
       </DialogTrigger>
 
-      <DialogContent className="max-w-[935px] rounded-[50px] [&>button]:hidden">
+      <DialogContent className="max-w-[935px] !rounded-[50px] [&>button]:hidden">
         <DialogHeader>
           <div>
             <MyFormWrapper onSubmit={onSubmit}>

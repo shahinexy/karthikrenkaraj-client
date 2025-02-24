@@ -26,7 +26,7 @@ const AddCauseModal = () => {
         <AiOutlinePlus /> Add Cause
       </DialogTrigger>
 
-      <DialogContent className="max-w-[935px] rounded-[50px] [&>button]:hidden">
+      <DialogContent className="max-w-[935px] !rounded-[50px] [&>button]:hidden">
         <DialogHeader>
           <div className="">
             <MyFormWrapper onSubmit={onSubmit}>

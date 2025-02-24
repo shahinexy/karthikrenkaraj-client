@@ -19,8 +19,8 @@ const CauseShopPage = () => {
       </div>
 
       <div className="flex gap-3">
-        <button className="flex gap-1 items-center bg-white md:py-2 py-2 md:px-3 px-1 rounded-full">
-          <span className="bg-[#F5F5F5] p-2 rounded-full">
+        <button className="flex gap-1 items-center bg-white  md:px-3 px-2 rounded-full">
+          <span className="bg-[#F5F5F5] md:p-2 p-1 rounded-full">
             <MdOutlineCategory />
           </span>
           Basic Need

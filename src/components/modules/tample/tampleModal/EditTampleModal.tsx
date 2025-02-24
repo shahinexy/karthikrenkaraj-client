@@ -25,7 +25,7 @@ const EditTampleModal = () => {
         Edit <MdOutlineEdit />
       </DialogTrigger>
 
-      <DialogContent className="max-w-[935px] rounded-[50px] [&>button]:hidden">
+      <DialogContent className="max-w-[935px] !rounded-[50px] [&>button]:hidden">
         <DialogHeader>
           <div>
             <MyFormWrapper onSubmit={onSubmit}>

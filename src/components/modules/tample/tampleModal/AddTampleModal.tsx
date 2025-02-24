@@ -21,11 +21,11 @@ const AddTampleModal = () => {
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="bg-secondary rounded-3xl md:py-[10] py-1 md:px-7 px-3 md:text-xl text-primary flex gap-2 items-center">
+      <DialogTrigger className="bg-secondary rounded-full md:py-[10] py-1 md:px-7 px-3 md:text-xl text-primary flex gap-2 items-center">
         <AiOutlinePlus /> Add Terminal
       </DialogTrigger>
 
-      <DialogContent className="max-w-[935px] rounded-[50px] [&>button]:hidden">
+      <DialogContent className="max-w-[935px] !rounded-[50px] [&>button]:hidden">
         <DialogHeader>
           <div>
             <MyFormWrapper onSubmit={onSubmit}>

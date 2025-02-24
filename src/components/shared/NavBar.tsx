@@ -44,7 +44,7 @@ const Navbar = () => {
           <SheetTrigger>
             <HiMenuAlt1 className="text-2xl cursor-pointer text-secondary" />
           </SheetTrigger>
-          <SheetContent side="left" className=" bg-secondary">
+          <SheetContent side="left" className=" bg-secondary ">
             <SheetHeader>
               <SheetTitle className="text-lg">Navigation</SheetTitle>
             </SheetHeader>
