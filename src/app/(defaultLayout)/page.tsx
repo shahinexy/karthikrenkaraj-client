@@ -1,5 +1,5 @@
-import TampleCard from "@/components/cards/TampleCard";
-import AddTampleModal from "@/components/modal/AddTampleModal";
+import TampleCard from "@/components/tample/tampleDards/TampleCard";
+import AddTampleModal from "@/components/tample/tampleModal/AddTampleModal";
 
 const CommonLayoutHomePage = () => {
   const temples = [1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 1, 2, 3, 4, , 5];

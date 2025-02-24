@@ -1,12 +1,7 @@
-"use client";
-import MyFormInput from "@/components/form/MyFormInput";
-import MyFormWrapper from "@/components/form/MyFormWrapper";
-import { FieldValues } from "react-hook-form";
+
+import LoginForm from "@/components/auth/LoginForm";
 
 export default function Page() {
-  const onSubmit = async (data: FieldValues) => {
-    console.log(data);
-  };
 
   return (
     <div className=" flex flex-col h-screen justify-center items-center md:space-y-14 space-y-10 py-20 px-5">
@@ -17,25 +12,7 @@ export default function Page() {
         <h1 className="md:text-4xl text-3xl font-semibold mb-1">Login Here</h1>
         <p className="mb-5">Start your journey as admin here</p>
 
-        <MyFormWrapper onSubmit={onSubmit}>
-          <MyFormInput
-            type="email"
-            name="email"
-            inputClassName="md:py-4 py-2 md:px-5 px-5 rounded-3xl"
-            placeholder="email"
-          />
-
-          <MyFormInput
-            type="password"
-            name="password"
-            inputClassName="md:py-4 py-2 md:px-5 px-5 rounded-3xl"
-            placeholder="password"
-          />
-
-          <button className="bg-gradient-to-b from-[#32CD32] to-[#249A24] rounded-3xl py-3 md:px-36 px-20 text-xl text-white">
-            Login
-          </button>
-        </MyFormWrapper>
+        <LoginForm />
       </div>
     </div>
   );

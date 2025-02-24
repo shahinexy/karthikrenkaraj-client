@@ -7,11 +7,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { AiOutlinePlus } from "react-icons/ai";
-import MyFormWrapper from "../form/MyFormWrapper";
 import { FieldValues } from "react-hook-form";
-import MyFormInput from "../form/MyFormInput";
 import { FaSave } from "react-icons/fa";
 import { useState } from "react";
+import MyFormWrapper from "@/components/form/MyFormWrapper";
+import MyFormInput from "@/components/form/MyFormInput";
 
 const AddCauseModal = () => {
   const [open, setOpen] = useState(false);

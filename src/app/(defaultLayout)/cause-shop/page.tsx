@@ -1,5 +1,5 @@
-import TampleCard from "@/components/cards/TampleCard";
-import AddCauseModal from "@/components/modal/AddCauseModal";
+import CauseCard from "@/components/cause/causeCard/CauseCard";
+import AddCauseModal from "@/components/cause/causeModal/AddCauseModal";
 import React from "react";
 
 const CauseShopPage = () => {
@@ -19,7 +19,7 @@ const CauseShopPage = () => {
       {/* cards  */}
       <div className="grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-7 md:mt-12 mt-7">
         {temples.map((item, idx) => (
-          <TampleCard key={idx} />
+          <CauseCard key={idx} />
         ))}
       </div>
     </div>

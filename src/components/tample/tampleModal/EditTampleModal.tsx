@@ -6,14 +6,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { AiOutlinePlus } from "react-icons/ai";
-import MyFormWrapper from "../form/MyFormWrapper";
 import { FieldValues } from "react-hook-form";
-import MyFormInput from "../form/MyFormInput";
 import { FaSave } from "react-icons/fa";
 import { useState } from "react";
+import { MdOutlineEdit } from "react-icons/md";
+import MyFormWrapper from "@/components/form/MyFormWrapper";
+import MyFormInput from "@/components/form/MyFormInput";
 
-const AddTampleModal = () => {
+const EditTampleModal = () => {
   const [open, setOpen] = useState(false);
 
   const onSubmit = async (data: FieldValues) => {
@@ -21,8 +21,8 @@ const AddTampleModal = () => {
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="bg-gradient-to-b from-[#32CD32] to-[#249A24] rounded-3xl py-[10] md:px-7 px-3 text-xl text-white flex gap-2 items-center">
-        <AiOutlinePlus /> Add Terminal
+      <DialogTrigger className="absolute bg-white rounded-full md:py-2 py-1 md:px-3 px-2 flex items-center justify-center right-5 top-5 gap-1 text-[#636F85] text-sm">
+        Edit <MdOutlineEdit />
       </DialogTrigger>
 
       <DialogContent className="max-w-[935px] rounded-[50px] [&>button]:hidden">
@@ -33,7 +33,7 @@ const AddTampleModal = () => {
                 <div className="flex justify-between gap-1">
                   <div className="">
                     <h1 className="md:text-4xl text-xl font-medium md:mb-4 mb-2">
-                      Add Tample
+                      Edit Tample
                     </h1>
                     <p className="md:text-2xl font-normal">On 20 Jun, 2024</p>
                   </div>
@@ -41,15 +41,15 @@ const AddTampleModal = () => {
                     <div>
                       <button
                         onClick={() => setOpen(false)}
-                        className="border border-[#0C0B2133] text-[#0C0B21] py-3 px-6 rounded-full font-normal"
+                        className="bg-[#FF4B4B] border border-[##FF4B4B] text-[#0C0B21] py-3 px-6 rounded-full font-normal"
                       >
-                        Discard
+                        Delete
                       </button>
                     </div>
                     <div>
                       <button
                         type="submit"
-                        className="border border-[#0C0B21] bg-[#0C0B21] text-white py-3 px-6 rounded-full flex items-center justify-center gap-1  font-normal"
+                        className="border border-secondary bg-secondary text-white py-3 px-6 rounded-full flex items-center justify-center gap-1  font-normal"
                       >
                         <FaSave /> Save
                       </button>
@@ -75,7 +75,7 @@ const AddTampleModal = () => {
                   <MyFormInput
                     type="file"
                     name="image"
-                    inputClassName="md:py-5 py-3 md:px-5 px-5 rounded-full"
+                    inputClassName="md:py-5 py-3 md:px-5 px-5 rounded-full "
                     placeholder="Upload Image"
                   />
                 </div>
@@ -100,4 +100,4 @@ const AddTampleModal = () => {
   );
 };
 
-export default AddTampleModal;
+export default EditTampleModal;
