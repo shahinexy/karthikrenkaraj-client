@@ -12,6 +12,7 @@ import { useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
 import MyFormInput from "@/components/form/MyFormInput";
+import MyFormSelect from "@/components/form/MyFormSelect";
 
 const EditCauseModal = () => {
   const [open, setOpen] = useState(false);
@@ -60,36 +61,51 @@ const EditCauseModal = () => {
 
               <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5 gap-3">
                 <div className="space-y-2">
-                  <h3 className="md:text-3xl font-medium">Temple Name</h3>
+                  <h3 className="md:text-3xl font-medium">Cause Name</h3>
                   <MyFormInput
                     type="text"
                     name="name"
-                    inputClassName="md:py-5 py-3 md:px-5 px-5 rounded-full"
-                    placeholder="Enter Temple Name"
+                    inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
+                    placeholder="Enter Cause Name"
                   />
                 </div>
                 <div className="space-y-2">
                   <h3 className="md:text-3xl font-medium">
-                    Upload Temple Picture
+                    Upload Cause Picture
                   </h3>
                   <MyFormInput
                     type="file"
                     name="image"
-                    inputClassName="md:py-5 py-3 md:px-5 px-5 rounded-full "
+                    inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                     placeholder="Upload Image"
                   />
                 </div>
+                <div className="space-y-2">
+                  <h3 className="md:text-3xl font-medium">Cause Price</h3>
+                  <MyFormInput
+                    type="text"
+                    name="price"
+                    inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
+                    placeholder="Enter Cause Price"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="md:text-3xl font-medium">Cause Quantity</h3>
+                  <MyFormInput
+                    type="text"
+                    name="quantity"
+                    inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
+                    placeholder="Enter Cause Quantity"
+                  />
+                </div>
               </div>
+
               <div className="space-y-2">
-                <h3 className="md:text-3xl font-medium">
-                  Enter Temple Information
-                </h3>
-                <MyFormInput
-                  type="textarea"
-                  name="information"
-                  rows={1}
-                  inputClassName="md:py-5 py-3 md:px-5 px-5 rounded-[50px]"
-                  placeholder="Enter Temple Information Here"
+                <h3 className="md:text-3xl font-medium">Cause Category</h3>
+                <MyFormSelect
+                  name="cause-category"
+                  options={[]}
+                  selectClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                 />
               </div>
             </MyFormWrapper>

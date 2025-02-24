@@ -64,24 +64,24 @@ const MyFormSelect = ({
               onFocus={() => setIsOpen(true)}
               onBlur={() => setIsOpen(false)}
               className={cn(
-                "w-full text-primary px-4 py-2 border rounded-md focus:outline-none focus:ring-2 appearance-none",
+                "w-full  px-4 py-2 border rounded-md focus:outline-none focus:ring-2 appearance-none",
                 "transition-all ease-in-out ",
                 error ? "border-danger" : "border-gray-300",
                 selectClassName
               )}
             >
-              <option className="text-primary" value="" disabled>
+              <option value="" disabled>
                 Select an option
               </option>
               {options?.map(({ label, value }) => (
-                <option className="text-primary" key={value} value={value}>
+                <option key={value} value={value}>
                   {label}
                 </option>
               ))}
             </select>
 
             {/* Custom Up/Down Icons */}
-            <div className="absolute right-3 top-1/3 transform -translate-y-1/2 text-gray-500 pointer-events-none transition-all">
+            <div className="absolute right-5 top-1/3 transform -translate-y-1/2 text-gray-500 pointer-events-none transition-all">
               {isOpen ? upIcon : downIcon}
             </div>
 

@@ -1,7 +1,7 @@
 "use client"
+import MyFormInput from "@/components/form/MyFormInput";
+import MyFormWrapper from "@/components/form/MyFormWrapper";
 import React from "react";
-import MyFormWrapper from "../form/MyFormWrapper";
-import MyFormInput from "../form/MyFormInput";
 import { FieldValues } from "react-hook-form";
 
 const LoginForm = () => {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import flower from "../../../../public/images/flower.png";
+import flower from "../../../../../public/images/flower.png";
 
 const TampleCauseCard = () => {
   return (

@@ -1,6 +1,8 @@
-import CauseCard from "@/components/cause/causeCard/CauseCard";
-import AddCauseModal from "@/components/cause/causeModal/AddCauseModal";
+import CauseCard from "@/components/modules/cause/causeCard/CauseCard";
+import AddCategoryModal from "@/components/modules/cause/causeModal/AddCategoryModal";
+import AddCauseModal from "@/components/modules/cause/causeModal/AddCauseModal";
 import React from "react";
+import { MdOutlineCategory } from "react-icons/md";
 
 const CauseShopPage = () => {
   const temples = [1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 1, 2, 3, 4, , 5];
@@ -8,7 +10,7 @@ const CauseShopPage = () => {
     <div className="">
       {/* hearder  */}
       <div className="flex justify-between">
-        <h1 className="md:text-5xl text-3xl font-medium md:mb-4 mb-2">
+        <h1 className="md:text-5xl text-2xl font-medium md:mb-4 mb-3">
           All Cause Shop
         </h1>
         <div className="inline-block">
@@ -16,8 +18,19 @@ const CauseShopPage = () => {
         </div>
       </div>
 
+      <div className="flex gap-3">
+        <button className="flex gap-1 items-center bg-white md:py-2 py-2 md:px-3 px-1 rounded-full">
+          <span className="bg-[#F5F5F5] p-2 rounded-full">
+            <MdOutlineCategory />
+          </span>
+          Basic Need
+        </button>
+
+        <AddCategoryModal />
+      </div>
+
       {/* cards  */}
-      <div className="grid md:grid-cols-5 grid-cols-2 gap-3 md:gap-7 md:mt-12 mt-7">
+      <div className="grid lg:grid-cols-5  md:grid-cols-3 grid-cols-2 gap-3 md:gap-7 md:mt-12 mt-7">
         {temples.map((item, idx) => (
           <CauseCard key={idx} />
         ))}

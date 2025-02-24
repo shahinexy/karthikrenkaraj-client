@@ -1,5 +1,5 @@
-import TampleCard from "@/components/tample/tampleDards/TampleCard";
-import AddTampleModal from "@/components/tample/tampleModal/AddTampleModal";
+import TampleCard from "@/components/modules/tample/tampleDards/TampleCard";
+import AddTampleModal from "@/components/modules/tample/tampleModal/AddTampleModal";
 
 const CommonLayoutHomePage = () => {
   const temples = [1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 1, 2, 3, 4, , 5];
@@ -7,7 +7,7 @@ const CommonLayoutHomePage = () => {
     <div className="">
       {/* hearder  */}
       <div className="flex justify-between">
-        <h1 className="md:text-5xl text-3xl font-medium md:mb-4 mb-2">
+        <h1 className="md:text-5xl text-2xl font-medium md:mb-4 mb-2">
           All Temple List
         </h1>
         <div className="inline-block">

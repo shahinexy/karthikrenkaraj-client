@@ -7,7 +7,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import tamplet from "../../../../../public/images/tamplet2.png";
 import { SlLocationPin } from "react-icons/sl";
 import { LiaPhoneSquareSolid } from "react-icons/lia";
-import ProductDetailsTap from "@/components/productDetails/ProductDetailsTap";
+import ProductDetailsTap from "@/components/modules/productDetails/ProductDetailsTap";
 
 const ProductPage = () => {
   const { id } = useParams();

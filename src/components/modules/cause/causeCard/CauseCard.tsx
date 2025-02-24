@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SlLocationPin } from "react-icons/sl";
-import temple from "../../../../public/images/tamplet.png";
+import temple from "../../../../../public/images/tamplet.png";
 import EditCauseModal from "../causeModal/EditCauseModal";
 
 const CauseCard = () => {

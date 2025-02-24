@@ -21,7 +21,7 @@ const AddTampleModal = () => {
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="bg-gradient-to-b from-[#32CD32] to-[#249A24] rounded-3xl py-[10] md:px-7 px-3 text-xl text-white flex gap-2 items-center">
+      <DialogTrigger className="bg-secondary rounded-3xl md:py-[10] py-1 md:px-7 px-3 md:text-xl text-primary flex gap-2 items-center">
         <AiOutlinePlus /> Add Terminal
       </DialogTrigger>
 
@@ -64,7 +64,7 @@ const AddTampleModal = () => {
                   <MyFormInput
                     type="text"
                     name="name"
-                    inputClassName="md:py-5 py-3 md:px-5 px-5 rounded-full"
+                    inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                     placeholder="Enter Temple Name"
                   />
                 </div>
@@ -75,7 +75,7 @@ const AddTampleModal = () => {
                   <MyFormInput
                     type="file"
                     name="image"
-                    inputClassName="md:py-5 py-3 md:px-5 px-5 rounded-full "
+                    inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full "
                     placeholder="Upload Image"
                   />
                 </div>
@@ -88,7 +88,7 @@ const AddTampleModal = () => {
                   type="textarea"
                   name="information"
                   rows={1}
-                  inputClassName="md:py-5 py-3 md:px-5 px-5 rounded-[50px]"
+                  inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
                   placeholder="Enter Temple Information Here"
                 />
               </div>
