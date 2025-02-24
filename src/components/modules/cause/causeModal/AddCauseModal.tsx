@@ -100,9 +100,20 @@ const AddCauseModal = () => {
               <div className="space-y-2">
                 <h3 className="md:text-3xl font-medium">Cause Category</h3>
                 <MyFormSelect
-                  name="cause-category"
+                  name="causeCategory"
                   options={[]}
                   selectClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="md:text-3xl font-medium">Category Details</h3>
+                <MyFormInput
+                  type="textarea"
+                  name="causeDetails"
+                  inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-3xl"
+                  rows={3}
+                  placeholder="Enter Cause Quantity"
                 />
               </div>
             </MyFormWrapper>
