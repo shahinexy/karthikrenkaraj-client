@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import ReduxProvider from "@/redux/provider/ReduxProvider";
 
-const roboto = Roboto({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "700", "900"],
 });
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} antialiased bg-gradient-to-b from-[#eff5e6] to-[#f6f6f6]` }>
+      <body className={`${inter.className} antialiased bg-gradient-to-b from-[#eff5e6] to-[#f6f6f6]` }>
         <Toaster position="bottom-right" richColors />
         <ReduxProvider>{children}</ReduxProvider>
       </body>

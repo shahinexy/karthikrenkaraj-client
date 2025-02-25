@@ -16,7 +16,6 @@ const CommonLayoutHomePage = () => {
       </div>
 
       {/* cards  */}
-
       <div className="grid lg:grid-cols-5  md:grid-cols-3 grid-cols-2 gap-3 md:gap-7 md:mt-12 mt-7">
         {temples.map((item, idx) => (
           <TampleCard key={idx} />

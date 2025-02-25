@@ -25,12 +25,12 @@ const AddCategoryModal = () => {
         <AiOutlinePlus /> Add Category
       </DialogTrigger>
 
-      <DialogContent className="max-w-[935px] !rounded-[50px] [&>button]:hidden">
+      <DialogContent className="max-w-[935px] md:!rounded-[50px] !rounded-3xl [&>button]:hidden">
         <DialogHeader>
           <div>
             <MyFormWrapper onSubmit={onSubmit}>
               <DialogTitle className="md:mb-7 mb-3">
-                <div className="flex justify-between gap-1">
+                <div className="flex md:flex-row flex-col justify-between items-center md:gap-1 gap-4">
                   <div className="">
                     <h1 className="md:text-4xl text-xl font-medium md:mb-4 mb-2">
                       Add Category

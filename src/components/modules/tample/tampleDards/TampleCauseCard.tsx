@@ -11,10 +11,10 @@ const TampleCauseCard = () => {
         alt="tamplet"
         className="rounded-3xl"
       />
-      <h3 className="font-semibold pt-3">Flower for monthly</h3>
+      <h3 className="md:font-semibold font-medium pt-3">Flower for monthly</h3>
       <div className="flex justify-between">
         <p>1 Items</p>
-        <p className="text-[#68A678] text-xl font-semibold">$100</p>
+        <p className="text-[#68A678] md:text-xl font-semibold">$100</p>
       </div>
     </div>
   );

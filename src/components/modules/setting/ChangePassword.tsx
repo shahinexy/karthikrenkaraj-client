@@ -3,11 +3,11 @@ import lock from '../../../../public/images/lock.png'
 import ChangePasswordForm from "../auth/ChangePasswordForm";
 const ChangePassword = () => {
   return (
-    <div className="flex justify-center items-center md:py-12 py-5 md:pb-20 pb-7">
+    <div className="flex justify-center items-center pt-5 md:pb-20 pb-7">
       <div className=" max-w-[922px] bg-gradient-to-b from-[#f2f8f2] to-[#fafafa] md:p-12 p-5 md:rounded-3xl rounded-2xl border-[3px] border-white text-center md:space-y-7 space-y-4">
         <div className="text-center">
           <h1 className="md:text-5xl text-2xl font-medium md:mb-4 mb-2">
-            All Temple List
+            Password
           </h1>
           <p className="text-lg text-[#475569]">
             Give me correct password and change password

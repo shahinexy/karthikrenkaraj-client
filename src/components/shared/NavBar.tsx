@@ -14,9 +14,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const Navbar = () => {
   const pathName = usePathname();
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   const navLinks = [
     {
@@ -36,11 +38,15 @@ const Navbar = () => {
       name: "Setting",
     },
   ];
+
+  const handleNavLinkClick = () => {
+    setIsSheetOpen(false);
+  };
   return (
     <div className="flex justify-between items-center gap-3 relative z-40">
       {/* small device menu */}
       <div className="md:hidden">
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger>
             <HiMenuAlt1 className="text-2xl cursor-pointer text-secondary" />
           </SheetTrigger>
@@ -48,6 +54,7 @@ const Navbar = () => {
             <SheetHeader>
               <SheetTitle className="text-lg">Navigation</SheetTitle>
             </SheetHeader>
+
             <nav className="mt-5">
               <ul className="space-y-2 flex flex-col z-40">
                 {navLinks.map((link) => (
@@ -59,8 +66,9 @@ const Navbar = () => {
                         ? "bg-primary text-black px-5 py-2 rounded-3xl"
                         : "text-white"
                     } hover:bg-primary hover:text-black px-5 py-2 rounded-3xl duration-300`}
+                    onClick={handleNavLinkClick} 
                   >
-                    {link.name}
+                      {link.name}
                   </Link>
                 ))}
               </ul>
@@ -80,7 +88,7 @@ const Navbar = () => {
 
       {/* larg device menu  */}
       <div className="bg-secondary px-3 py-4 rounded-full md:flex hidden justify-center items-center">
-        <ul className="space-x-5">
+        <ul className="lg:space-x-5 space-x-2">
           {navLinks.map((link) => (
             <Link
               key={link.path}

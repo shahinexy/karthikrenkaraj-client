@@ -85,7 +85,7 @@ const MyFormSelect = ({
               {isOpen ? upIcon : downIcon}
             </div>
 
-            <div className="h-4 my-1">
+            <div className="h-4 mb-1">
               {error && (
                 <small className="text-red-500 text-xs">{error.message}</small>
               )}

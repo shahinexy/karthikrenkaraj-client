@@ -10,19 +10,19 @@ const ProductDetailsTap = () => {
       <TabsList className="bg-transparent md:mb-8 mb-4 flex md:gap-5 gap-2">
         <TabsTrigger
           value="causes"
-          className="md:text-2xl  data-[state=active]:border-b-[2px] data-[state=active]:border-black data-[state=active]:shadow-none data-[state=active]:rounded-none"
+          className="md:text-2xl text-lg  data-[state=active]:border-b-[2px] data-[state=active]:border-black data-[state=active]:shadow-none data-[state=active]:rounded-none"
         >
           Causes
         </TabsTrigger>
         <TabsTrigger
           value="completed-causes"
-          className="md:text-2xl  data-[state=active]:border-b-[2px] data-[state=active]:border-black data-[state=active]:shadow-none data-[state=active]:rounded-none"
+          className="md:text-2xl text-lg data-[state=active]:border-b-[2px] data-[state=active]:border-black data-[state=active]:shadow-none data-[state=active]:rounded-none"
         >
           Completed Causes
         </TabsTrigger>
       </TabsList>
       <TabsContent value="causes">
-        <div className="grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-3">
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
           {items.map((item, idx) => (
             <TampleCauseCard key={idx} />
           ))}

@@ -24,7 +24,7 @@ const LoginForm = () => {
         placeholder="password"
       />
 
-      <button className="bg-gradient-to-b from-[#32CD32] to-[#249A24] rounded-3xl py-3 md:px-36 px-20 text-xl text-white">
+      <button className="bg-secondary rounded-3xl py-3 md:px-36 px-20 text-xl text-primary">
         Login
       </button>
     </MyFormWrapper>

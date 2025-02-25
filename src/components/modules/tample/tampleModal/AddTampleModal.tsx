@@ -25,12 +25,12 @@ const AddTampleModal = () => {
         <AiOutlinePlus /> Add Terminal
       </DialogTrigger>
 
-      <DialogContent className="max-w-[935px] !rounded-[50px] [&>button]:hidden">
+      <DialogContent className="max-w-[935px]  md:!rounded-[50px] !rounded-3xl [&>button]:hidden">
         <DialogHeader>
           <div>
             <MyFormWrapper onSubmit={onSubmit}>
               <DialogTitle className="md:mb-7 mb-3">
-                <div className="flex justify-between gap-1">
+                <div className="flex md:flex-row flex-col justify-between items-center md:gap-1 gap-4">
                   <div className="">
                     <h1 className="md:text-4xl text-xl font-medium md:mb-4 mb-2">
                       Add Tample
@@ -58,7 +58,7 @@ const AddTampleModal = () => {
                 </div>
               </DialogTitle>
 
-              <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5 gap-3">
+              <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5 gap-1">
                 <div className="space-y-2">
                   <h3 className="md:text-3xl font-medium">Temple Name</h3>
                   <MyFormInput

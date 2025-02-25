@@ -11,7 +11,7 @@ const CauseCard = () => {
         <EditCauseModal />
       </div>
       <Link href={`/product/1`}>
-        <div className="bg-white md:rounded-3xl rounded-xl p-3">
+        <div className="bg-white md:rounded-3xl rounded-xl md:p-3 p-2">
           <Image
             src={temple}
             height={1000}
@@ -19,11 +19,11 @@ const CauseCard = () => {
             alt="temple"
             className="md:rounded-[18px] rounded-xl"
           />
-          <h3 className="text-xl font-semibold text-center my-2">
+          <h3 className="md:text-xl text-lg font-semibold text-center md:my-2 my-[5px]">
             Puliyur Cause
           </h3>
-          <div className="flex gap-1 justify-center items-center text-sm ">
-            <SlLocationPin />
+          <div className="flex gap-1 justify-center md:items-center text-sm ">
+            <SlLocationPin className="md:mt-0 mt-1" />
             <p> Puliyur, Kerala, South India</p>
           </div>
         </div>
