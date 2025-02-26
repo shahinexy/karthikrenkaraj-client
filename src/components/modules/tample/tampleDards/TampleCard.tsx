@@ -5,10 +5,14 @@ import { SlLocationPin } from "react-icons/sl";
 import EditTampleModal from "../tampleModal/EditTampleModal";
 import { useGetAllTempleQuery } from "@/redux/features/temple/temple.api";
 import { TTemple } from "@/types/temple.type";
+import Spinner from "@/components/shared/Spinner";
 
 const TampleCard = () => {
-  const { data: tempelData } = useGetAllTempleQuery(undefined);
+  const { data: tempelData, isFetching } = useGetAllTempleQuery(undefined);
 
+  if(isFetching){
+    return <Spinner />
+  }
   return (
     <div className="grid lg:grid-cols-5  md:grid-cols-3 grid-cols-2 gap-3 md:gap-7 md:mt-12 mt-7">
       {tempelData?.data?.data.map((temple: TTemple) => (

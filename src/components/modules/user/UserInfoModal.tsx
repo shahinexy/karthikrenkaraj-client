@@ -9,9 +9,10 @@ import {
 import { RxCross1 } from "react-icons/rx";
 import { useState } from "react";
 import Image from "next/image";
-import userImg from "../../../../public/images/flower.png";
+import { TUser } from "@/types/user.type";
+import { FaRegUserCircle } from "react-icons/fa";
 
-const UserInfoModal = () => {
+const UserInfoModal = ({user}: {user: TUser}) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -35,18 +36,18 @@ const UserInfoModal = () => {
 
               <div className="flex flex-col justify-center items-center">
                 <div className="rounded-full overflow-hidden">
-                  <Image
-                    src={userImg}
+                  {user?.profileImage ? <Image
+                    src={user?.profileImage}
                     alt="user"
                     width={1000}
                     height={1000}
                     className="w-[125px] h-[125px] rounded-full"
-                  />
+                  /> : <FaRegUserCircle className="w-[125px] h-[125px] rounded-full"/>}
                 </div>
 
                 <div className="text-center md:mt-4 mt-3 md:mb-7 mb-4">
-                  <h3 className="md:text-xl">Jhon Do </h3>
-                  <p className="text-sm font-normal">email@gmail.com</p>
+                  <h3 className="md:text-xl">{user.fullName}</h3>
+                  <p className="text-sm font-normal">{user.email}</p>
                 </div>
 
                 <div className="flex items-center space-x-4 justify-between w-full md:mb-7 mb-4">
@@ -61,7 +62,9 @@ const UserInfoModal = () => {
                   </div>
                 </div>
 
-                <button className="bg-[#FF4B4B] py-4 w-full rounded-full text-white font-normal">Delete</button>
+                <button className="bg-[#FF4B4B] py-4 w-full rounded-full text-white font-normal">
+                  Delete
+                </button>
               </div>
             </div>
           </DialogTitle>

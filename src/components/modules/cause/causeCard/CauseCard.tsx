@@ -1,15 +1,18 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { SlLocationPin } from "react-icons/sl";
-import temple from "../../../../../public/images/tamplet.png";
 import EditCauseModal from "../causeModal/EditCauseModal";
 import { TCause } from "@/types/cause.type";
 import { useGetAllCauseQuery } from "@/redux/features/cause/cause.api";
+import Spinner from "@/components/shared/Spinner";
 
 const CauseCard = () => {
-  const { data: causeData } = useGetAllCauseQuery(undefined);
-  console.log(causeData);
+  const { data: causeData, isFetching } = useGetAllCauseQuery(undefined);
+
+  if (isFetching) {
+    return <Spinner />;
+  }
   return (
     <div className="grid lg:grid-cols-5  md:grid-cols-3 grid-cols-2 gap-3 md:gap-7 md:mt-12 mt-7">
       {causeData?.data?.data.map((cause: TCause) => (

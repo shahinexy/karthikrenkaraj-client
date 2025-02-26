@@ -1,8 +1,8 @@
 
 import TampleCard from "@/components/modules/tample/tampleDards/TampleCard";
 import AddTampleModal from "@/components/modules/tample/tampleModal/AddTampleModal";
+
 const CommonLayoutHomePage = () => {
- 
   return (
     <div className="">
       {/* hearder  */}

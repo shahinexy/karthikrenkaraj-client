@@ -15,10 +15,14 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useGetMeQuery } from "@/redux/features/user/user.api";
 
 const Navbar = () => {
   const pathName = usePathname();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const { data } = useGetMeQuery(undefined);
+
+  const userData = data?.data;
 
   const navLinks = [
     {
@@ -66,9 +70,9 @@ const Navbar = () => {
                         ? "bg-primary text-black px-5 py-2 rounded-3xl"
                         : "text-white"
                     } hover:bg-primary hover:text-black px-5 py-2 rounded-3xl duration-300`}
-                    onClick={handleNavLinkClick} 
+                    onClick={handleNavLinkClick}
                   >
-                      {link.name}
+                    {link.name}
                   </Link>
                 ))}
               </ul>
@@ -106,10 +110,19 @@ const Navbar = () => {
       </div>
 
       <div className=" flex gap-2 items-center md:px-4 px-2 md:py-2 py-[2px] rounded-full bg-white">
-        <FaRegUserCircle className="md:text-4xl text-2xl rounded-full" />
+        {userData?.profileImage ? (
+          <Image
+            src={userData?.profileImage}
+            height={1000}
+            width={1000}
+            alt="profile"
+          />
+        ) : (
+          <FaRegUserCircle className="md:text-4xl text-2xl rounded-full" />
+        )}
         <div className="">
-          <p className="text-sm">Arik Lee</p>
-          <p className="font-medium text-sm">Admin</p>
+          <p className="text-sm">{userData?.fullName}</p>
+          <p className="font-medium text-sm">{userData?.role}</p>
         </div>
       </div>
     </div>

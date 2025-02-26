@@ -13,25 +13,21 @@ import Link from "next/link";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const {data} = useGetSingleTempleQuery(id)
-  console.log(data);
-  // console.log(id);
+  const { data } = useGetSingleTempleQuery(id);
+  const templeData = data?.data
+
+  console.log(templeData);
   return (
     <div>
-      <Link href={'/'} >
-      <button className="flex gap-1 items-center mb-3 md:mb-6">
-        <BsArrowLeft /> Back
-      </button>
+      <Link href={"/"}>
+        <button className="flex gap-1 items-center mb-3 md:mb-6">
+          <BsArrowLeft /> Back
+        </button>
       </Link>
       <div className="flex justify-between mb-3 md:mb-6">
         <h1 className="md:text-5xl text-3xl font-medium md:mb-4 mb-2">
           Temple Details
         </h1>
-        <div className="inline-block">
-          <button className="border border-gray-400 rounded-full py-[10] md:px-7 px-3 text-xl text-gray-400 flex gap-2 items-center">
-            Edit <MdOutlineModeEdit />
-          </button>
-        </div>
       </div>
 
       {/* cols 2  */}

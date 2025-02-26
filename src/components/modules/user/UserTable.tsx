@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Table,
   TableBody,
@@ -9,10 +9,15 @@ import {
 } from "@/components/ui/table";
 import UserInfoModal from "./UserInfoModal";
 import { useGetAllUserQuery } from "@/redux/features/user/user.api";
+import { TUser } from "@/types/user.type";
+import Spinner from "@/components/shared/Spinner";
 
 const UserTable = () => {
-  const {data} = useGetAllUserQuery(undefined)
-  console.log(data?.data?.data);
+  const { data, isFetching } = useGetAllUserQuery(undefined);
+
+  if (isFetching) {
+    return <Spinner />;
+  }
   return (
     <div>
       <Table>
@@ -36,24 +41,17 @@ const UserTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow className="text-[#0C0B21B2] text-center">
-            <TableCell className="py-3">INV001</TableCell>
-            <TableCell>Jdon</TableCell>
-            <TableCell>example@gmail.com</TableCell>
-            <TableCell>12324324</TableCell>
-            <TableCell>
-            <UserInfoModal />
-            </TableCell>
-          </TableRow>
-          <TableRow className="text-[#0C0B21B2] text-center">
-            <TableCell className="py-3">INV001</TableCell>
-            <TableCell>Don</TableCell>
-            <TableCell>example@gmail.com</TableCell>
-            <TableCell>12324324</TableCell>
-            <TableCell>
-              <UserInfoModal />
-            </TableCell>
-          </TableRow>
+          {data?.data?.data.map((user: TUser, idx: string) => (
+            <TableRow key={user.id} className="text-[#0C0B21B2] text-center">
+              <TableCell className="py-3">{idx + 1}</TableCell>
+              <TableCell>{user?.fullName}</TableCell>
+              <TableCell>{user?.email}</TableCell>
+              <TableCell>{user?.phoneNumber}</TableCell>
+              <TableCell>
+                <UserInfoModal user={user} />
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>
