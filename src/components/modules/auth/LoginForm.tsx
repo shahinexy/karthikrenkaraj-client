@@ -1,12 +1,42 @@
-"use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import MyFormInput from "@/components/form/MyFormInput";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { setUser, TUser } from "@/redux/features/auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { varifyToken } from "@/utils/varifyToken";
 import React from "react";
 import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 const LoginForm = () => {
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
+
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
+
+    const toastId = toast.loading("login...");
+
+    try {
+      const res = await login(data).unwrap();
+      console.log(res);
+      const user = varifyToken(res.data.token) as TUser;
+      console.log(user);
+      dispatch(setUser({ user, token: res.data.token }));
+
+      toast.success("Login success", { id: toastId });
+      
+      // if (res.data.needPasswordChange) {
+      //   navigate("/change-password");
+      // } else {
+      //   navigate(`/${user.role}/dashboard`);
+      // }
+    } catch (err: any) {
+      toast.error(err.data?.message);
+      console.log("faild to login");
+    }
   };
   return (
     <MyFormWrapper onSubmit={onSubmit}>

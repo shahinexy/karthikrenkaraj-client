@@ -3,7 +3,7 @@ import userImg from "../../../../public/images/flower.png";
 
 const MyProfile = () => {
   return (
-    <div className="flex justify-center items-center pt-5 md:pb-32 pb-12">
+    <div className="flex justify-center items-center py-5">
       <div className=" max-w-[625px] bg-gradient-to-b from-[#f2f8f2] to-[#fafafa] md:p-12 p-5 md:rounded-3xl rounded-2xl border-[3px] border-white text-center md:space-y-7 space-y-4">
         <div className="rounded-full overflow-hidden flex justify-center">
           <Image

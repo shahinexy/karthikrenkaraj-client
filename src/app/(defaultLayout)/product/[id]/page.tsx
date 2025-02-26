@@ -8,15 +8,21 @@ import tamplet from "../../../../../public/images/tamplet2.png";
 import { SlLocationPin } from "react-icons/sl";
 import { LiaPhoneSquareSolid } from "react-icons/lia";
 import ProductDetailsTap from "@/components/modules/productDetails/ProductDetailsTap";
+import { useGetSingleTempleQuery } from "@/redux/features/temple/temple.api";
+import Link from "next/link";
 
 const ProductPage = () => {
   const { id } = useParams();
-  console.log(id);
+  const {data} = useGetSingleTempleQuery(id)
+  console.log(data);
+  // console.log(id);
   return (
     <div>
+      <Link href={'/'} >
       <button className="flex gap-1 items-center mb-3 md:mb-6">
         <BsArrowLeft /> Back
       </button>
+      </Link>
       <div className="flex justify-between mb-3 md:mb-6">
         <h1 className="md:text-5xl text-3xl font-medium md:mb-4 mb-2">
           Temple Details

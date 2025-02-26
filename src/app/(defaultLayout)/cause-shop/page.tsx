@@ -5,7 +5,7 @@ import React from "react";
 import { MdOutlineCategory } from "react-icons/md";
 
 const CauseShopPage = () => {
-  const temples = [1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 1, 2, 3, 4, , 5];
+
   return (
     <div className="">
       {/* hearder  */}
@@ -30,11 +30,7 @@ const CauseShopPage = () => {
       </div>
 
       {/* cards  */}
-      <div className="grid lg:grid-cols-5  md:grid-cols-3 grid-cols-2 gap-3 md:gap-7 md:mt-12 mt-7">
-        {temples.map((item, idx) => (
-          <CauseCard key={idx} />
-        ))}
-      </div>
+      <CauseCard />
     </div>
   );
 };

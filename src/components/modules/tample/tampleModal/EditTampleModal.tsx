@@ -12,13 +12,32 @@ import { useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
 import MyFormInput from "@/components/form/MyFormInput";
+import { useUpdateTempleMutation } from "@/redux/features/temple/temple.api";
 
-const EditTampleModal = () => {
+const EditTampleModal = ({ id }: { id: string }) => {
+  const [updateTemple] = useUpdateTempleMutation();
+
   const [open, setOpen] = useState(false);
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+
+    const formData = new FormData();
+
+    formData.append("data", JSON.stringify(data));
+
+    formData.append('image', data.image)
+
+    const templeData = {
+      id,
+      data: formData,
+    };
+
+    updateTemple(templeData);
+    console.log(templeData);
+
+    console.log(Object.fromEntries(formData));
   };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="absolute bg-white rounded-full md:py-2 py-1 md:px-3 px-2 flex items-center justify-center right-5 top-5 gap-1 text-[#636F85] text-sm">
@@ -64,6 +83,7 @@ const EditTampleModal = () => {
                   <MyFormInput
                     type="text"
                     name="name"
+                    required={false}
                     inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                     placeholder="Enter Temple Name"
                   />
@@ -75,6 +95,7 @@ const EditTampleModal = () => {
                   <MyFormInput
                     type="file"
                     name="image"
+                    required={false}
                     inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full "
                     placeholder="Upload Image"
                   />
@@ -86,8 +107,21 @@ const EditTampleModal = () => {
                 </h3>
                 <MyFormInput
                   type="textarea"
-                  name="information"
+                  name="description"
+                  required={false}
                   rows={1}
+                  inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
+                  placeholder="Enter Temple Information Here"
+                />
+              </div>
+              <div className="space-y-2">
+                <h3 className="md:text-3xl font-medium">
+                  Enter Temple Location
+                </h3>
+                <MyFormInput
+                  type="text"
+                  name="address"
+                  required={false}
                   inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
                   placeholder="Enter Temple Information Here"
                 />

@@ -2,7 +2,7 @@ import UserTable from "@/components/modules/user/UserTable";
 
 const UserPage = () => {
   return (
-    <div className="h-screen">
+    <div>
       <h1 className="md:text-5xl text-2xl font-medium md:mb-4 mb-2">
         All Temple List
       </h1>

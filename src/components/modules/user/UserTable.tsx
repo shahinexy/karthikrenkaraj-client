@@ -1,3 +1,4 @@
+"use client"
 import {
   Table,
   TableBody,
@@ -7,8 +8,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import UserInfoModal from "./UserInfoModal";
+import { useGetAllUserQuery } from "@/redux/features/user/user.api";
 
 const UserTable = () => {
+  const {data} = useGetAllUserQuery(undefined)
+  console.log(data?.data?.data);
   return (
     <div>
       <Table>

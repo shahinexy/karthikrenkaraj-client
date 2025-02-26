@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Starter kit",
+  title: "Yargo",
   description: "starter kit for nextjs with redux with persist",
 };
 
