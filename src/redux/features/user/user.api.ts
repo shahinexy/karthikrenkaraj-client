@@ -26,14 +26,8 @@ const userApi = baseApi.injectEndpoints({
       // },
     }),
 
-    getMe : builder.query({
-      query: ()=>({
-          url: `/auth/profile`,
-          method: "GET"
-      })
-    }),
     
   }),
 });
 
-export const { useGetAllUserQuery, useGetMeQuery } = userApi;
+export const { useGetAllUserQuery } = userApi;

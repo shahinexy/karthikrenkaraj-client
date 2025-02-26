@@ -1,13 +1,39 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import MyFormInput from "@/components/form/MyFormInput";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
+import { useChangePasswordMutation } from "@/redux/features/auth/authApi";
+import { logout } from "@/redux/features/auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
 import React from "react";
-import { FieldValues } from "react-hook-form";
 import { CiUnlock } from "react-icons/ci";
+import { toast } from "sonner";
+
+interface ChangePasswordFormData {
+  oldPassword: string;
+  newPassword: string;
+}
 
 const ChangePasswordForm = () => {
-  const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+  const [changePass] = useChangePasswordMutation();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const onSubmit = async (data: ChangePasswordFormData) => {
+    const toastId = toast.loading("Updating password...");
+
+    try {
+      const res = await changePass(data).unwrap();
+
+      console.log(res);
+      dispatch(logout());
+
+      toast.success("Password changed successfully", { id: toastId });
+      router.push("/login");
+    } catch (err: any) {
+      toast.error(err.data?.message || "Failed to change password");
+    }
   };
   return (
     <MyFormWrapper onSubmit={onSubmit}>

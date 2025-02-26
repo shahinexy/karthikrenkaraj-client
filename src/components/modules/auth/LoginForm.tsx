@@ -6,6 +6,7 @@ import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { setUser, TUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { varifyToken } from "@/utils/varifyToken";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
@@ -13,10 +14,9 @@ import { toast } from "sonner";
 const LoginForm = () => {
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
+  const router = useRouter();
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
-
     const toastId = toast.loading("login...");
 
     try {
@@ -27,15 +27,10 @@ const LoginForm = () => {
       dispatch(setUser({ user, token: res.data.token }));
 
       toast.success("Login success", { id: toastId });
-      
-      // if (res.data.needPasswordChange) {
-      //   navigate("/change-password");
-      // } else {
-      //   navigate(`/${user.role}/dashboard`);
-      // }
+
+      router.push("/");
     } catch (err: any) {
-      toast.error(err.data?.message);
-      console.log("faild to login");
+      toast.error(err.data?.message || 'Faild to login');
     }
   };
   return (

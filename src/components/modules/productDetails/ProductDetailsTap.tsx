@@ -1,10 +1,23 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TampleCauseCard from "../tample/tampleDards/TampleCauseCard";
+import {
+  useTempleCompleteCausesQuery,
+  useTempleFundingCausesQuery,
+} from "@/redux/features/cause/cause.api";
+import Spinner from "@/components/shared/Spinner";
 
-const ProductDetailsTap = () => {
-  const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3];
+const ProductDetailsTap = ({ id }: { id: string }) => {
+  const { data: fundingCauses, isFetching: fundingIsFetching } =
+    useTempleFundingCausesQuery(id);
 
+  const { data: completedCauses, isFetching: completedIsFetching } =
+    useTempleCompleteCausesQuery(id);
+  console.log(completedCauses);
+
+  if (fundingIsFetching || completedIsFetching) {
+    return <Spinner />;
+  }
   return (
     <Tabs defaultValue="causes" className="w-full">
       <TabsList className="bg-transparent md:mb-8 mb-4 flex md:gap-5 gap-2">
@@ -23,14 +36,14 @@ const ProductDetailsTap = () => {
       </TabsList>
       <TabsContent value="causes">
         <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
-          {items.map((item, idx) => (
+          {fundingCauses?.data.map((cause, idx) => (
             <TampleCauseCard key={idx} />
           ))}
         </div>
       </TabsContent>
       <TabsContent value="completed-causes">
         <div className="grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-3">
-          {items.map((item, idx) => (
+          {completedCauses?.data.map((item, idx) => (
             <TampleCauseCard key={idx} />
           ))}
         </div>
