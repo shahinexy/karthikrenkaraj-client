@@ -1,15 +1,8 @@
 import baseApi from "@/redux/api/baseApi";
-import { TQueryParams, TResponseRedux } from "@/types/globalType";
-import { TTemple } from "@/types/temple.type";
+import { TQueryParams } from "@/types/globalType";
 
 const templeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // getAllTemple: builder.query({
-    //   query: () => ({
-    //     url: "/temples",
-    //     method: "GET",
-    //   }),
-    // }),
 
     getAllTemple: builder.query({
         query: (args) => {

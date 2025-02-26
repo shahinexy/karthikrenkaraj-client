@@ -21,16 +21,14 @@ const LoginForm = () => {
 
     try {
       const res = await login(data).unwrap();
-      console.log(res);
       const user = varifyToken(res.data.token) as TUser;
-      console.log(user);
       dispatch(setUser({ user, token: res.data.token }));
 
       toast.success("Login success", { id: toastId });
 
       router.push("/");
     } catch (err: any) {
-      toast.error(err.data?.message || 'Faild to login');
+      toast.error(err.data?.message || "Faild to login");
     }
   };
   return (

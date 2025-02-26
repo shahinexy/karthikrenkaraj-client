@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   Dialog,
@@ -13,6 +14,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
 import MyFormInput from "@/components/form/MyFormInput";
 import { useUpdateTempleMutation } from "@/redux/features/temple/temple.api";
+import { toast } from "sonner";
 
 const EditTampleModal = ({ id }: { id: string }) => {
   const [updateTemple] = useUpdateTempleMutation();
@@ -20,7 +22,7 @@ const EditTampleModal = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
 
   const onSubmit = async (data: FieldValues) => {
-
+    const toastId = toast.loading("Updating Temple...");
     const formData = new FormData();
 
     formData.append("data", JSON.stringify(data));
@@ -31,11 +33,17 @@ const EditTampleModal = ({ id }: { id: string }) => {
       id,
       data: formData,
     };
+console.log(templeData);
+    try {
+      const res = await updateTemple(templeData);
+      console.log(res);
+  
+      console.log(Object.fromEntries(formData));
+       toast.success("Updated Successfully", { id: toastId });
+    } catch (err: any) {
+      toast.error(err.data?.message || "Failed to Update");
+    }
 
-    updateTemple(templeData);
-    console.log(templeData);
-
-    console.log(Object.fromEntries(formData));
   };
 
   return (
