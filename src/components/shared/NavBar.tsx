@@ -27,11 +27,11 @@ const Navbar = () => {
   const navLinks = [
     {
       path: "/",
-      name: "Tamplets",
+      name: "Temple",
     },
     {
-      path: "/cause-shop",
-      name: "Cause Shop",
+      path: "/product",
+      name: "Product",
     },
     {
       path: "/user",

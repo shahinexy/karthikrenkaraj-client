@@ -23,8 +23,8 @@ export const baseApi = createApi({
       return headers;
     },
   }),
+  endpoints: () => ({}),
   tagTypes: ["User", "Temple"],
-  endpoints: (builder) => ({}),
 });
 
 export default baseApi;

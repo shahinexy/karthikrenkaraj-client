@@ -23,27 +23,44 @@ const EditTampleModal = ({ id }: { id: string }) => {
 
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Updating Temple...");
+
+    // Remove empty fields
+    const filteredData: Record<string, any> = {};
+    Object.keys(data).forEach((key) => {
+      if (data[key] !== "" && data[key] !== null && data[key] !== undefined) {
+        filteredData[key] = data[key];
+      }
+    });
+
+    // If image is provided, append it separately
     const formData = new FormData();
+    if (filteredData.image) {
+      formData.append("image", filteredData.image);
+      delete filteredData.image; // Remove image from JSON data
+    }
 
-    formData.append("data", JSON.stringify(data));
-
-    formData.append('image', data.image)
+    formData.append("data", JSON.stringify(filteredData));
 
     const templeData = {
       id,
       data: formData,
     };
-console.log(templeData);
+
     try {
       const res = await updateTemple(templeData);
-      console.log(res);
-  
-      console.log(Object.fromEntries(formData));
-       toast.success("Updated Successfully", { id: toastId });
+      if (res.data) {
+        toast.success("Updated Successfully", { id: toastId });
+        setOpen(false);
+      } else {
+        toast.error(res?.error?.data?.message || "Failed to Update", {
+          id: toastId,
+        });
+        setOpen(false);
+      }
     } catch (err: any) {
       toast.error(err.data?.message || "Failed to Update");
+      setOpen(false);
     }
-
   };
 
   return (
@@ -111,6 +128,18 @@ console.log(templeData);
               </div>
               <div className="space-y-2">
                 <h3 className="md:text-3xl font-medium">
+                  Enter Temple Location
+                </h3>
+                <MyFormInput
+                  type="text"
+                  name="address"
+                  required={false}
+                  inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
+                  placeholder="Enter Temple Information Here"
+                />
+              </div>
+              <div className="space-y-2">
+                <h3 className="md:text-3xl font-medium">
                   Enter Temple Information
                 </h3>
                 <MyFormInput
@@ -118,18 +147,6 @@ console.log(templeData);
                   name="description"
                   required={false}
                   rows={1}
-                  inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
-                  placeholder="Enter Temple Information Here"
-                />
-              </div>
-              <div className="space-y-2">
-                <h3 className="md:text-3xl font-medium">
-                  Enter Temple Location
-                </h3>
-                <MyFormInput
-                  type="text"
-                  name="address"
-                  required={false}
                   inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
                   placeholder="Enter Temple Information Here"
                 />

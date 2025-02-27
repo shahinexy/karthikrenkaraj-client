@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   Dialog,
@@ -12,17 +13,42 @@ import { FaSave } from "react-icons/fa";
 import { useState } from "react";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
 import MyFormInput from "@/components/form/MyFormInput";
+import { toast } from "sonner";
+import { useAddTempleMutation } from "@/redux/features/temple/temple.api";
 
 const AddTampleModal = () => {
   const [open, setOpen] = useState(false);
+  const [addTemple] = useAddTempleMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    const toastId = toast.loading("Adding Temple...");
+
+    const formData = new FormData();
+
+    formData.append("image", data.image);
+
+    formData.append("data", JSON.stringify(data));
+
+    try {
+      const res = await addTemple(formData);
+      if (res.data) {
+        toast.success("Temepe Added Successfully", { id: toastId });
+        setOpen(false);
+      } else {
+        toast.error(res?.error?.data?.message || "Failed to Add", {
+          id: toastId,
+        });
+        setOpen(false);
+      }
+    } catch (err: any) {
+      toast.error(err.data?.message || "Failed to Add");
+      setOpen(false);
+    }
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="bg-secondary rounded-full md:py-[10] py-1 md:px-7 px-3 md:text-xl text-primary flex gap-2 items-center">
-        <AiOutlinePlus /> Add Terminal
+        <AiOutlinePlus /> Add Temple
       </DialogTrigger>
 
       <DialogContent className="max-w-[935px]  md:!rounded-[50px] !rounded-3xl [&>button]:hidden">
@@ -80,13 +106,27 @@ const AddTampleModal = () => {
                   />
                 </div>
               </div>
+
+              <div className="space-y-2">
+                <h3 className="md:text-3xl font-medium">
+                  Enter Temple Location
+                </h3>
+                <MyFormInput
+                  type="text"
+                  name="address"
+                  required={false}
+                  inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
+                  placeholder="Enter Temple Information Here"
+                />
+              </div>
+
               <div className="space-y-2">
                 <h3 className="md:text-3xl font-medium">
                   Enter Temple Information
                 </h3>
                 <MyFormInput
                   type="textarea"
-                  name="information"
+                  name="description"
                   rows={1}
                   inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
                   placeholder="Enter Temple Information Here"

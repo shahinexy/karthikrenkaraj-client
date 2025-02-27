@@ -20,7 +20,7 @@ const TampleCard = () => {
           <div className="z-10">
             <EditTampleModal id={temple.id} />
           </div>
-          <Link href={`/product/${temple.id}`}>
+          <Link href={`/single-temple/${temple.id}`}>
             <div className="bg-white md:rounded-3xl rounded-xl md:p-3 p-2">
               <Image
                 src={temple.image}
