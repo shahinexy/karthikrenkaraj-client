@@ -8,15 +8,15 @@ import { LiaPhoneSquareSolid } from "react-icons/lia";
 import ProductDetailsTap from "@/components/modules/productDetails/ProductDetailsTap";
 import { useGetSingleTempleQuery } from "@/redux/features/temple/temple.api";
 import Link from "next/link";
-import Spinner from "@/components/shared/Spinner";
+import Spinner from "@/components/modules/common/Spinner";
 
 const ProductPage = () => {
   const { id } = useParams();
   const { data, isFetching } = useGetSingleTempleQuery(id);
   const templeData = data?.data;
 
-  if(isFetching){
-    return <Spinner />
+  if (isFetching) {
+    return <Spinner />;
   }
 
   return (
@@ -36,7 +36,13 @@ const ProductPage = () => {
       <div className="grid md:grid-cols-5 grid-cols-1 md:gap-16 gap-3 md:p-7 p-3 bg-white rounded-3xl">
         {/* col  */}
         <div className="md:col-span-2 col-span-1 space-y-5">
-          <Image src={templeData?.image} height={1000} width={1000} alt="new tamplet" className="md:rounded-[18px] rounded-xl"/>
+          <Image
+            src={templeData?.image}
+            height={1000}
+            width={1000}
+            alt="new tamplet"
+            className="md:rounded-[18px] rounded-xl"
+          />
           <div className="flex flex-col gap-1 justify-center items-center">
             <h1 className="md:text-5xl text-3xl font-medium md:mb-3 mb-2 lg:text-start text-center">
               {templeData?.name}
@@ -58,7 +64,7 @@ const ProductPage = () => {
         </div>
         {/* col  */}
         <div className="md:col-span-3 col-span-1">
-          <ProductDetailsTap id={templeData.id}/>
+          <ProductDetailsTap id={templeData.id} />
         </div>
       </div>
     </div>

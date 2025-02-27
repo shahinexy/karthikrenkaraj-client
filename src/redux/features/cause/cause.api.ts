@@ -13,33 +13,37 @@ const causeApi = baseApi.injectEndpoints({
           );
         }
         return {
-          url: "/temples",
+          url: "/causes",
           method: "GET",
           params: params,
         };
       },
-      // transformResponse: (response: TResponseRedux<TTemple>) => {
-      //   return {
-      //     data: response.data,
-      //     meta: response.data,
-      //   };
-      // },
+      providesTags: ["Causes"],
+    }),
+
+    addCause: builder.mutation({
+      query: (data) => ({
+        url: `/causes`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Causes"],
     }),
 
     getSingleCause: builder.query({
       query: (args) => ({
-        url: `/temples/${args}`,
+        url: `/causes/${args}`,
         method: "GET",
       }),
     }),
 
     updateCause: builder.mutation({
       query: (args) => ({
-        url: `/temples/${args.id}`,
+        url: `/causes/${args.id}`,
         method: "PUT",
         body: args.data,
       }),
-      invalidatesTags: ["Temple"],
+      invalidatesTags: ["Causes"],
     }),
 
     templeFundingCauses: builder.query({
@@ -60,13 +64,22 @@ const causeApi = baseApi.injectEndpoints({
       },
     }),
 
+    deleteCause: builder.mutation({
+      query: (id) => ({
+        url: `/causes/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Causes"],
+    }),
   }),
 });
 
 export const {
   useGetAllCauseQuery,
   useGetSingleCauseQuery,
+  useAddCauseMutation,
   useUpdateCauseMutation,
   useTempleFundingCausesQuery,
-  useTempleCompleteCausesQuery
+  useTempleCompleteCausesQuery,
+  useDeleteCauseMutation,
 } = causeApi;

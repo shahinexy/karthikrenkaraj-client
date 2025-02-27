@@ -5,7 +5,7 @@ import {
   useTempleCompleteCausesQuery,
   useTempleFundingCausesQuery,
 } from "@/redux/features/cause/cause.api";
-import Spinner from "@/components/shared/Spinner";
+import Spinner from "@/components/modules/common/Spinner";
 
 const ProductDetailsTap = ({ id }: { id: string }) => {
   const { data: fundingCauses, isFetching: fundingIsFetching } =
@@ -36,8 +36,8 @@ const ProductDetailsTap = ({ id }: { id: string }) => {
       </TabsList>
       <TabsContent value="causes">
         <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
-          {fundingCauses?.data.map((cause, idx) => (
-            <TampleCauseCard key={idx} />
+          {fundingCauses?.data.map((cause: any, idx) => (
+            <TampleCauseCard key={idx} cause={cause} />
           ))}
         </div>
       </TabsContent>

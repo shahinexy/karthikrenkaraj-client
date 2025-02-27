@@ -6,7 +6,7 @@ export type TCause = {
     description: string
     type: string
     isDeleted: boolean
-    image: string[]
+    images: string[]
     createdAt: string
     updatedAt: string
   }

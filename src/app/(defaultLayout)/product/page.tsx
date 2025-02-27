@@ -1,6 +1,6 @@
-import CauseCard from "@/components/modules/cause/causeCard/CauseCard";
-import AddCategoryModal from "@/components/modules/cause/causeModal/AddCategoryModal";
-import AddCauseModal from "@/components/modules/cause/causeModal/AddCauseModal";
+import CauseCard from "@/components/modules/product/causeCard/CauseCard";
+import AddCategoryModal from "@/components/modules/product/causeModal/AddCategoryModal";
+import AddCauseModal from "@/components/modules/product/causeModal/AddCauseModal";
 import React from "react";
 import { MdOutlineCategory } from "react-icons/md";
 

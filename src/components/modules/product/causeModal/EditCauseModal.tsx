@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   Dialog,
@@ -6,49 +7,105 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { AiOutlinePlus } from "react-icons/ai";
 import { FieldValues } from "react-hook-form";
 import { FaSave } from "react-icons/fa";
 import { useState } from "react";
+import { MdOutlineEdit } from "react-icons/md";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
 import MyFormInput from "@/components/form/MyFormInput";
 import MyFormSelect from "@/components/form/MyFormSelect";
+import { toast } from "sonner";
+import {
+  useGetSingleCauseQuery,
+  useUpdateCauseMutation,
+} from "@/redux/features/cause/cause.api";
+import DeleteModal from "../../common/DeleteModal";
 
-const AddCauseModal = () => {
+const EditCauseModal = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
+  const [updateCause] = useUpdateCauseMutation();
+  const { data: causeData } = useGetSingleCauseQuery(id);
 
   const onSubmit = async (data: FieldValues) => {
+    const toastId = toast.loading("Updating Cause...");
     console.log(data);
+    const price = parseFloat(data.price);
+    const quantity = parseInt(data.quantity, 10);
+
+    if (isNaN(price) || price <= 0) {
+      toast.error("Invalid price. Please enter a valid number.");
+      return;
+    }
+    if (isNaN(quantity) || quantity < 1) {
+      toast.error("Invalid quantity. Must be at least 1.");
+      return;
+    }
+
+    const formattedData = { ...data, price, quantity };
+
+    // If image is provided, append it separately
+    const formData = new FormData();
+
+    if (data.images) {
+      const allImages = Array.isArray(data.images)
+        ? data.images
+        : [data.images];
+      allImages.forEach((image: File) => {
+        formData.append("images", image);
+      });
+    }
+
+    formData.append("data", JSON.stringify(formattedData));
+    //clg
+    console.log("form data", Object.fromEntries(formData));
+    const causeData = {
+      id,
+      data: formData,
+    };
+
+    try {
+      const res = await updateCause(causeData);
+      if (res.data) {
+        toast.success("Updated Successfully", { id: toastId });
+        setOpen(false);
+      } else {
+        toast.error(res?.error?.data?.message || "Failed to Cause", {
+          id: toastId,
+        });
+        setOpen(false);
+      }
+    } catch (err: any) {
+      toast.error(err.data?.message || "Failed to Cause");
+      setOpen(false);
+    }
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="bg-secondary rounded-3xl md:py-[10] py-1 md:px-7 px-3 md:text-xl text-primary flex gap-2 items-center">
-        <AiOutlinePlus /> Add Cause
+      <DialogTrigger className="absolute bg-white rounded-full md:py-2 py-1 md:px-3 px-2 flex items-center justify-center right-5 top-5 gap-1 text-[#636F85] text-sm">
+        Edit <MdOutlineEdit />
       </DialogTrigger>
 
       <DialogContent className="max-w-[935px]  md:!rounded-[50px] !rounded-3xl [&>button]:hidden">
         <DialogHeader>
-          <div className="">
-            <MyFormWrapper onSubmit={onSubmit}>
+          <div>
+            <MyFormWrapper onSubmit={onSubmit} defaultValues={causeData?.data}>
               <DialogTitle className="md:mb-7 mb-3">
                 <div className="flex md:flex-row flex-col justify-between items-center md:gap-1 gap-4">
                   <div className="">
                     <h1 className="md:text-4xl text-xl font-medium md:mb-4 mb-2">
-                      Add Cause
+                      Edit Cause
                     </h1>
                     <p className="md:text-2xl font-normal">On 20 Jun, 2024</p>
                   </div>
                   <div className="space-x-3 flex ">
                     <div>
-                      <button
-                        onClick={() => setOpen(false)}
-                        className="border border-[#0C0B2133] text-[#0C0B21] py-3 px-6 rounded-full font-normal"
-                      >
-                        Discard
-                      </button>
+                      <DeleteModal id={id} type="cause" />
                     </div>
                     <div>
-                      <button className="border border-[#0C0B21] bg-[#0C0B21] text-white py-3 px-6 rounded-full flex items-center justify-center gap-1  font-normal">
+                      <button
+                        type="submit"
+                        className="border border-secondary bg-secondary text-white py-3 px-6 rounded-full flex items-center justify-center gap-1  font-normal"
+                      >
                         <FaSave /> Save
                       </button>
                     </div>
@@ -62,6 +119,7 @@ const AddCauseModal = () => {
                   <MyFormInput
                     type="text"
                     name="name"
+                    required={false}
                     inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                     placeholder="Enter Cause Name"
                   />
@@ -72,7 +130,9 @@ const AddCauseModal = () => {
                   </h3>
                   <MyFormInput
                     type="file"
-                    name="image"
+                    name="images"
+                    isMultiple
+                    required={false}
                     inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                     placeholder="Upload Image"
                   />
@@ -82,6 +142,7 @@ const AddCauseModal = () => {
                   <MyFormInput
                     type="text"
                     name="price"
+                    required={false}
                     inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                     placeholder="Enter Cause Price"
                   />
@@ -91,6 +152,7 @@ const AddCauseModal = () => {
                   <MyFormInput
                     type="text"
                     name="quantity"
+                    required={false}
                     inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                     placeholder="Enter Cause Quantity"
                   />
@@ -100,7 +162,8 @@ const AddCauseModal = () => {
               <div className="space-y-2">
                 <h3 className="md:text-3xl font-medium">Cause Category</h3>
                 <MyFormSelect
-                  name="causeCategory"
+                  name="cause-category"
+                  required={false}
                   options={[]}
                   selectClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                 />
@@ -111,6 +174,7 @@ const AddCauseModal = () => {
                 <MyFormInput
                   type="textarea"
                   name="causeDetails"
+                  required={false}
                   inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-3xl"
                   rows={3}
                   placeholder="Enter Cause Quantity"
@@ -124,4 +188,4 @@ const AddCauseModal = () => {
   );
 };
 
-export default AddCauseModal;
+export default EditCauseModal;

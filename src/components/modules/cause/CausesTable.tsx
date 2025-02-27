@@ -7,12 +7,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import UserInfoModal from "./UserInfoModal";
 import { useGetAllUserQuery } from "@/redux/features/user/user.api";
 import { TUser } from "@/types/user.type";
 import Spinner from "@/components/modules/common/Spinner";
 
-const UserTable = () => {
+const CausesTable = () => {
   const { data, isFetching } = useGetAllUserQuery(undefined);
 
   if (isFetching) {
@@ -24,19 +23,22 @@ const UserTable = () => {
         <TableHeader>
           <TableRow>
             <TableHead className="text-[#0C0B21B2] font-normal text-center">
-              Member Id
+              No
             </TableHead>
             <TableHead className="text-[#0C0B21B2] font-normal text-center">
-              Name
+              Temple Name
             </TableHead>
             <TableHead className="text-[#0C0B21B2] font-normal text-center">
-              Email
+              Cause Name
             </TableHead>
             <TableHead className="text-[#0C0B21B2] font-normal text-center">
-              Mobile
+              Price
             </TableHead>
             <TableHead className="text-[#0C0B21B2] font-normal text-center">
-              Profile
+              Status
+            </TableHead>
+            <TableHead className="text-[#0C0B21B2] font-normal text-center">
+              Action
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -47,8 +49,11 @@ const UserTable = () => {
               <TableCell>{user?.fullName}</TableCell>
               <TableCell>{user?.email}</TableCell>
               <TableCell>{user?.phoneNumber}</TableCell>
+              <TableCell>In-progress</TableCell>
               <TableCell>
-                <UserInfoModal user={user} />
+                <button className="bg-primary md:px-4 px-2 md:py-2 py-1 rounded-full">
+                  Update
+                </button>
               </TableCell>
             </TableRow>
           ))}
@@ -58,4 +63,4 @@ const UserTable = () => {
   );
 };
 
-export default UserTable;
+export default CausesTable;

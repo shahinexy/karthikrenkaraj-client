@@ -45,6 +45,16 @@ const templeApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Temple"],
     }),
+
+    
+    deleteTemple: builder.mutation({
+      query: (id) => ({
+        url: `/temples/${id}`,
+        method: "DELETE"
+      }),
+      invalidatesTags: ["Temple"],
+    }),
+
   }),
 });
 
@@ -53,4 +63,5 @@ export const {
   useAddTempleMutation,
   useGetSingleTempleQuery,
   useUpdateTempleMutation,
+  useDeleteTempleMutation
 } = templeApi;

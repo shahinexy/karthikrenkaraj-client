@@ -7,10 +7,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { RxCross1 } from "react-icons/rx";
-import { useState } from "react";
+import { use, useState } from "react";
 import Image from "next/image";
 import { TUser } from "@/types/user.type";
 import { FaRegUserCircle } from "react-icons/fa";
+import DeleteModal from "../common/DeleteModal";
 
 const UserInfoModal = ({user}: {user: TUser}) => {
   const [open, setOpen] = useState(false);
@@ -62,9 +63,9 @@ const UserInfoModal = ({user}: {user: TUser}) => {
                   </div>
                 </div>
 
-                <button className="bg-[#FF4B4B] py-4 w-full rounded-full text-white font-normal">
-                  Delete
-                </button>
+                <div className="w-full flex justify-center">
+                  <DeleteModal id={user.id} type="user" />
+                </div>
               </div>
             </div>
           </DialogTitle>

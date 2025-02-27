@@ -1,7 +1,8 @@
 import Image from "next/image";
 import flower from "../../../../../public/images/flower.png";
 
-const TampleCauseCard = () => {
+const TampleCauseCard = (cause: any) => {
+  console.log(cause.cause);
   return (
     <div className="space-y-1">
       <Image

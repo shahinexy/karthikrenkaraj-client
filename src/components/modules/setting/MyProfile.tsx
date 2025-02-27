@@ -1,15 +1,15 @@
 "use client";
 import Image from "next/image";
 import userImg from "../../../../public/images/flower.png";
-import Spinner from "@/components/shared/Spinner";
+import Spinner from "@/components/modules/common/Spinner";
 import { useGetMeQuery } from "@/redux/features/auth/authApi";
 
 const MyProfile = () => {
   const { data, isFetching } = useGetMeQuery(undefined);
   const userData = data?.data;
 
-  if(isFetching){
-    return <Spinner />
+  if (isFetching) {
+    return <Spinner />;
   }
   return (
     <div className="flex justify-center items-center py-5">

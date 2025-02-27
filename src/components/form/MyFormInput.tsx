@@ -28,6 +28,7 @@ interface MyFormInputProps {
   radioInputClassName?: string; // Custom className for radio input
   radioImageClassName?: string; // Custom className for image
   radioItemClassName?: string; // Custom className for radio items
+  isMultiple?: boolean
 }
 
 const MyFormInput = ({
@@ -47,6 +48,7 @@ const MyFormInput = ({
   radioInputClassName,
   radioImageClassName,
   radioItemClassName,
+  isMultiple = false,
 }: MyFormInputProps) => {
   const { control, getValues, setValue } = useFormContext();
   const inputValue = useWatch({ control, name }) ?? ""; // Ensure no undefined value
@@ -89,16 +91,23 @@ const MyFormInput = ({
                   type="file"
                   id={name}
                   accept="image/*"
+                  multiple={isMultiple}
                   className={cn(
                     "w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 cursor-pointer",
                     error ? "border-red-500" : "border-gray-300",
                     inputClassName
                   )}
                   onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) {
-                      setValue(name, file); 
-                      // setPreview(URL.createObjectURL(file)); 
+                    const files = e.target.files;
+                    if (files) {
+                      // setValue(name, file);
+                      if (isMultiple) {
+                        // If multiple files are allowed, store the array of files
+                        setValue(name, Array.from(files)); 
+                      } else {
+                        // If only one file is allowed, store the first selected file
+                        setValue(name, files[0]);
+                      }
                     }
                   }}
                 />

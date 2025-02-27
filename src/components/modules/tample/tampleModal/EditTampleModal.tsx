@@ -15,6 +15,8 @@ import MyFormWrapper from "@/components/form/MyFormWrapper";
 import MyFormInput from "@/components/form/MyFormInput";
 import { useUpdateTempleMutation } from "@/redux/features/temple/temple.api";
 import { toast } from "sonner";
+import DeleteTemleModal from "../../common/DeleteModal";
+import DeleteModal from "../../common/DeleteModal";
 
 const EditTampleModal = ({ id }: { id: string }) => {
   const [updateTemple] = useUpdateTempleMutation();
@@ -83,12 +85,13 @@ const EditTampleModal = ({ id }: { id: string }) => {
                   </div>
                   <div className="space-x-3 flex ">
                     <div>
-                      <button
+                      {/* <button
                         onClick={() => setOpen(false)}
                         className="bg-[#FF4B4B] border border-[##FF4B4B] text-[#0C0B21] py-3 px-6 rounded-full font-normal"
                       >
                         Delete
-                      </button>
+                      </button> */}
+                      <DeleteModal id={id} type="temple" />
                     </div>
                     <div>
                       <button

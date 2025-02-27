@@ -18,16 +18,18 @@ const userApi = baseApi.injectEndpoints({
           params: params,
         };
       },
-      // transformResponse: (response: TResponseRedux<TTemple>) => {
-      //   return {
-      //     data: response.data,
-      //     meta: response.data,
-      //   };
-      // },
+      providesTags: ['User']
     }),
 
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
+    }),
     
   }),
 });
 
-export const { useGetAllUserQuery } = userApi;
+export const { useGetAllUserQuery, useDeleteUserMutation } = userApi;

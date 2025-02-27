@@ -1,15 +1,14 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { SlLocationPin } from "react-icons/sl";
 import EditCauseModal from "../causeModal/EditCauseModal";
 import { TCause } from "@/types/cause.type";
 import { useGetAllCauseQuery } from "@/redux/features/cause/cause.api";
-import Spinner from "@/components/shared/Spinner";
+import Spinner from "@/components/modules/common/Spinner";
 
 const CauseCard = () => {
   const { data: causeData, isFetching } = useGetAllCauseQuery(undefined);
-
+  console.log(causeData);
   if (isFetching) {
     return <Spinner />;
   }
@@ -18,11 +17,11 @@ const CauseCard = () => {
       {causeData?.data?.data.map((cause: TCause) => (
         <div key={cause.id} className="relative">
           <div className="z-10">
-            <EditCauseModal />
+            <EditCauseModal id={cause.id} />
           </div>
           <div className="bg-white md:rounded-3xl rounded-xl md:p-3 p-2">
             <Image
-              src={cause?.image}
+              src={cause?.images[0]}
               height={1000}
               width={1000}
               alt="temple"
