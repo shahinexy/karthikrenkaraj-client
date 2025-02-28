@@ -9,7 +9,7 @@ import Spinner from "@/components/modules/common/Spinner";
 
 const TampleCard = () => {
   const { data: tempelData, isFetching } = useGetAllTempleQuery(undefined);
-
+console.log(tempelData?.data?.data);
   if (isFetching) {
     return <Spinner />;
   }

@@ -1,5 +1,6 @@
 import baseApi from "@/redux/api/baseApi";
-import { TQueryParams } from "@/types/globalType";
+import { TCetegory } from "@/types/cause.type";
+import { TQueryParams, TResponseRedux } from "@/types/globalType";
 
 const causeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -35,6 +36,7 @@ const causeApi = baseApi.injectEndpoints({
         url: `/causes/${args}`,
         method: "GET",
       }),
+      providesTags: ["Causes"],
     }),
 
     updateCause: builder.mutation({
@@ -71,6 +73,16 @@ const causeApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Causes"],
     }),
+
+    causeCategory: builder.query({
+      query: () => {
+        return {
+          url: `/type`,
+          method: "GET",
+        };
+      },
+    }),
+
   }),
 });
 
@@ -82,4 +94,5 @@ export const {
   useTempleFundingCausesQuery,
   useTempleCompleteCausesQuery,
   useDeleteCauseMutation,
+  useCauseCategoryQuery
 } = causeApi;

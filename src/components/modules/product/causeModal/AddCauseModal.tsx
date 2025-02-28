@@ -14,16 +14,30 @@ import { useState } from "react";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
 import MyFormInput from "@/components/form/MyFormInput";
 import MyFormSelect from "@/components/form/MyFormSelect";
-import { useAddCauseMutation } from "@/redux/features/cause/cause.api";
+import {
+  useAddCauseMutation,
+  useCauseCategoryQuery,
+} from "@/redux/features/cause/cause.api";
 import { toast } from "sonner";
 
 const AddCauseModal = () => {
   const [open, setOpen] = useState(false);
   const [addCause] = useAddCauseMutation();
+  const { data: causeCategory } = useCauseCategoryQuery(undefined);
 
+  // causes category options
+  const causeOptions = causeCategory?.data.map(
+    (item: { id: string; name: string }) => ({
+      keyOption: item.id,
+      value: item.name,
+      label: item.name,
+    })
+  );
+
+  // from submit handler
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Adding Cause...");
-console.log(data.images);
+
     const price = parseFloat(data.price);
     const quantity = parseInt(data.quantity, 10);
 
@@ -52,7 +66,7 @@ console.log(data.images);
 
     formData.append("data", JSON.stringify(formattedData));
     //clg
-    console.log("form data", Object.fromEntries(formData));
+    // console.log("form data", Object.fromEntries(formData));
     try {
       const res = await addCause(formData);
       if (res.data) {
@@ -151,7 +165,7 @@ console.log(data.images);
                 <h3 className="md:text-3xl font-medium">Cause Category</h3>
                 <MyFormSelect
                   name="type"
-                  options={[{ label: "Flower", value: "flower" }]}
+                  options={causeOptions}
                   selectClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
                 />
               </div>

@@ -7,7 +7,7 @@ import React, { useState } from "react";
 interface MyFormSelectProps {
   name: string;
   label?: string;
-  options: { label: string; value: string; icon?: React.ReactNode }[];
+  options: { label: string; keyOption: string; value: string; icon?: React.ReactNode }[];
   required?: boolean;
   className?: string;
   labelClassName?: string;
@@ -73,8 +73,8 @@ const MyFormSelect = ({
               <option value="" disabled>
                 Select an option
               </option>
-              {options?.map(({ label, value }) => (
-                <option key={value} value={value}>
+              {options?.map(({ label, value, keyOption }) => (
+                <option key={keyOption} value={value}>
                   {label}
                 </option>
               ))}

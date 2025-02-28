@@ -27,7 +27,7 @@ const templeApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ['Temple']
+      invalidatesTags: ["Temple"],
     }),
 
     getSingleTemple: builder.query({
@@ -35,6 +35,7 @@ const templeApi = baseApi.injectEndpoints({
         url: `/temples/${args}`,
         method: "GET",
       }),
+      providesTags: ["Temple"],
     }),
 
     updateTemple: builder.mutation({
@@ -46,15 +47,13 @@ const templeApi = baseApi.injectEndpoints({
       invalidatesTags: ["Temple"],
     }),
 
-    
     deleteTemple: builder.mutation({
       query: (id) => ({
         url: `/temples/${id}`,
-        method: "DELETE"
+        method: "DELETE",
       }),
       invalidatesTags: ["Temple"],
     }),
-
   }),
 });
 
@@ -63,5 +62,5 @@ export const {
   useAddTempleMutation,
   useGetSingleTempleQuery,
   useUpdateTempleMutation,
-  useDeleteTempleMutation
+  useDeleteTempleMutation,
 } = templeApi;

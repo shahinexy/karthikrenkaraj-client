@@ -11,3 +11,11 @@ export type TCause = {
     updatedAt: string
   }
   
+  export type TCetegory = {
+    id: string
+    name: string
+    icon: string
+    createdAt: string
+    updatedAt: string
+  }
+  

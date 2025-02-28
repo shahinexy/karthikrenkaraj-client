@@ -13,7 +13,7 @@ import Spinner from "@/components/modules/common/Spinner";
 
 const CausesTable = () => {
   const { data, isFetching } = useGetAllUserQuery(undefined);
-
+console.log(data);
   if (isFetching) {
     return <Spinner />;
   }

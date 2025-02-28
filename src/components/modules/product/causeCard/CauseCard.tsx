@@ -8,7 +8,7 @@ import Spinner from "@/components/modules/common/Spinner";
 
 const CauseCard = () => {
   const { data: causeData, isFetching } = useGetAllCauseQuery(undefined);
-  console.log(causeData);
+console.log(causeData?.data?.data);
   if (isFetching) {
     return <Spinner />;
   }

@@ -13,35 +13,29 @@ import { useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
 import MyFormInput from "@/components/form/MyFormInput";
-import { useUpdateTempleMutation } from "@/redux/features/temple/temple.api";
+import {
+  useGetSingleTempleQuery,
+  useUpdateTempleMutation,
+} from "@/redux/features/temple/temple.api";
 import { toast } from "sonner";
-import DeleteTemleModal from "../../common/DeleteModal";
 import DeleteModal from "../../common/DeleteModal";
 
 const EditTampleModal = ({ id }: { id: string }) => {
-  const [updateTemple] = useUpdateTempleMutation();
-
   const [open, setOpen] = useState(false);
+  const [updateTemple] = useUpdateTempleMutation();
+  const { data: tempeData } = useGetSingleTempleQuery(id);
 
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Updating Temple...");
 
-    // Remove empty fields
-    const filteredData: Record<string, any> = {};
-    Object.keys(data).forEach((key) => {
-      if (data[key] !== "" && data[key] !== null && data[key] !== undefined) {
-        filteredData[key] = data[key];
-      }
-    });
-
     // If image is provided, append it separately
     const formData = new FormData();
-    if (filteredData.image) {
-      formData.append("image", filteredData.image);
-      delete filteredData.image; // Remove image from JSON data
+    if (data.image) {
+      formData.append("image", data.image);
+      delete data.image; // Remove image from JSON data
     }
 
-    formData.append("data", JSON.stringify(filteredData));
+    formData.append("data", JSON.stringify(data));
 
     const templeData = {
       id,
@@ -74,7 +68,7 @@ const EditTampleModal = ({ id }: { id: string }) => {
       <DialogContent className="max-w-[935px]  md:!rounded-[50px] !rounded-3xl [&>button]:hidden">
         <DialogHeader>
           <div>
-            <MyFormWrapper onSubmit={onSubmit}>
+            <MyFormWrapper onSubmit={onSubmit} defaultValues={tempeData?.data}>
               <DialogTitle className="md:mb-7 mb-3">
                 <div className="flex md:flex-row flex-col justify-between items-center md:gap-1 gap-4">
                   <div className="">
@@ -85,12 +79,6 @@ const EditTampleModal = ({ id }: { id: string }) => {
                   </div>
                   <div className="space-x-3 flex ">
                     <div>
-                      {/* <button
-                        onClick={() => setOpen(false)}
-                        className="bg-[#FF4B4B] border border-[##FF4B4B] text-[#0C0B21] py-3 px-6 rounded-full font-normal"
-                      >
-                        Delete
-                      </button> */}
                       <DeleteModal id={id} type="temple" />
                     </div>
                     <div>

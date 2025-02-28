@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   Dialog,
@@ -7,14 +8,21 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { RxCross1 } from "react-icons/rx";
-import { use, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { TUser } from "@/types/user.type";
 import { FaRegUserCircle } from "react-icons/fa";
 import DeleteModal from "../common/DeleteModal";
+import { useGetMyDonetionQuery } from "@/redux/features/donetion/donation.api";
 
-const UserInfoModal = ({user}: {user: TUser}) => {
+const UserInfoModal = ({ user }: { user: TUser }) => {
   const [open, setOpen] = useState(false);
+  const { data } = useGetMyDonetionQuery(user?.id);
+
+  const totalGiven = data?.data.reduce(
+    (acc: number, item: any) => acc + (item.amount || 0),
+    0
+  );
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -37,13 +45,17 @@ const UserInfoModal = ({user}: {user: TUser}) => {
 
               <div className="flex flex-col justify-center items-center">
                 <div className="rounded-full overflow-hidden">
-                  {user?.profileImage ? <Image
-                    src={user?.profileImage}
-                    alt="user"
-                    width={1000}
-                    height={1000}
-                    className="w-[125px] h-[125px] rounded-full"
-                  /> : <FaRegUserCircle className="w-[125px] h-[125px] rounded-full"/>}
+                  {user?.profileImage ? (
+                    <Image
+                      src={user?.profileImage}
+                      alt="user"
+                      width={1000}
+                      height={1000}
+                      className="w-[125px] h-[125px] rounded-full"
+                    />
+                  ) : (
+                    <FaRegUserCircle className="w-[125px] h-[125px] rounded-full" />
+                  )}
                 </div>
 
                 <div className="text-center md:mt-4 mt-3 md:mb-7 mb-4">
@@ -54,12 +66,16 @@ const UserInfoModal = ({user}: {user: TUser}) => {
                 <div className="flex items-center space-x-4 justify-between w-full md:mb-7 mb-4">
                   <div className="text-center space-y-2">
                     <p className="font-normal">Contribution</p>
-                    <p className="md:text-3xl text-xl font-semibold">50</p>
+                    <p className="md:text-3xl text-xl font-semibold">
+                      {data?.data?.length}
+                    </p>
                   </div>
                   <div className="h-14 border-l-2 border-black"></div>
                   <div className="text-center space-y-2">
                     <p className="font-normal">Total Giving</p>
-                    <p className="md:text-3xl text-xl font-semibold">$500</p>
+                    <p className="md:text-3xl text-xl font-semibold">
+                      {totalGiven}
+                    </p>
                   </div>
                 </div>
 
