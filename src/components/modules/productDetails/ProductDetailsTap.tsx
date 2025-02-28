@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TampleCauseCard from "../tample/tampleDards/TampleCauseCard";
@@ -36,14 +37,14 @@ const ProductDetailsTap = ({ id }: { id: string }) => {
       </TabsList>
       <TabsContent value="causes">
         <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
-          {fundingCauses?.data.map((cause: any, idx) => (
+          {fundingCauses?.data.map((cause: any, idx:number) => (
             <TampleCauseCard key={idx} cause={cause} />
           ))}
         </div>
       </TabsContent>
       <TabsContent value="completed-causes">
         <div className="grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-3">
-          {completedCauses?.data.map((item, idx) => (
+          {completedCauses?.data.map((item:any, idx:number) => (
             <TampleCauseCard key={idx} />
           ))}
         </div>

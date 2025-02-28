@@ -1,6 +1,6 @@
 import baseApi from "@/redux/api/baseApi";
-import { TCetegory } from "@/types/cause.type";
-import { TQueryParams, TResponseRedux } from "@/types/globalType";
+
+import { TQueryParams,  } from "@/types/globalType";
 
 const causeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

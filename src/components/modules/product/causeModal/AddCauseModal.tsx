@@ -68,7 +68,7 @@ const AddCauseModal = () => {
     //clg
     // console.log("form data", Object.fromEntries(formData));
     try {
-      const res = await addCause(formData);
+      const res:any = await addCause(formData);
       if (res.data) {
         toast.success("Cause Added Successfully", { id: toastId });
         setOpen(false);

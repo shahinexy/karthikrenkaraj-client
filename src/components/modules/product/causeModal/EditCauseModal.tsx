@@ -109,7 +109,7 @@ console.log('row',data);
     };
 
     try {
-      const res = await updateCause(causeData);
+      const res:any = await updateCause(causeData);
       if ("data" in res) {
         toast.success("Updated Successfully", { id: toastId });
         setOpen(false);

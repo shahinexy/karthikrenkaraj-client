@@ -43,7 +43,7 @@ const EditTampleModal = ({ id }: { id: string }) => {
     };
 
     try {
-      const res = await updateTemple(templeData);
+      const res:any = await updateTemple(templeData);
       if (res.data) {
         toast.success("Updated Successfully", { id: toastId });
         setOpen(false);

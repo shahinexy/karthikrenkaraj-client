@@ -30,7 +30,7 @@ const AddTampleModal = () => {
     formData.append("data", JSON.stringify(data));
 
     try {
-      const res = await addTemple(formData);
+      const res:any = await addTemple(formData);
       if (res.data) {
         toast.success("Temepe Added Successfully", { id: toastId });
         setOpen(false);
