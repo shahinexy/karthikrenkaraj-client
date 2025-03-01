@@ -1,19 +1,30 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { cookies } from "next/headers";
 
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get("accessToken")?.value;
+export async function middleware(request: NextRequest) {
+  const cookieStore = await cookies();
+  const token: any = cookieStore.get("token");
+  const currentPath = request.nextUrl.pathname;
+
+  console.log(token);
+
+  // Allow access to the login page without authentication
+  if (currentPath === "/login") {
+    return NextResponse.next();
+  }
 
   // Redirect to login if token is not present
   if (!token) {
-    const loginUrl = new URL("/login", request.url);
-    return NextResponse.redirect(loginUrl);
+    return NextResponse.redirect(new URL("/login", request.url));
+  } else {
+    return NextResponse.next();
   }
-  // Proceed to the requested route
-  return NextResponse.next();
 }
 
 // "Matching Paths"
 export const config = {
-  matcher: [],
+  matcher: ["/((?!login|api|_next/static|_next/image|favicon.ico).*)"],
 };

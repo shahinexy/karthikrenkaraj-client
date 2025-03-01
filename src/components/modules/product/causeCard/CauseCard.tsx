@@ -8,7 +8,7 @@ import Spinner from "@/components/modules/common/Spinner";
 
 const CauseCard = () => {
   const { data: causeData, isFetching } = useGetAllCauseQuery(undefined);
-console.log(causeData?.data?.data);
+
   if (isFetching) {
     return <Spinner />;
   }
@@ -25,14 +25,14 @@ console.log(causeData?.data?.data);
               height={1000}
               width={1000}
               alt="temple"
-              className="md:rounded-[18px] rounded-xl"
+              className="md:rounded-[18px] rounded-xl md:h-44 h-[120px] w-full"
             />
-            <h3 className="md:text-xl text-lg font-semibold text-center md:my-2 my-[5px]">
+            <h3 className="md:text-xl text-lg font-semibold text-center md:my-2 my-[5px] truncate overflow-hidden whitespace-nowrap">
               {cause.name}
             </h3>
             <div className="flex gap-1 justify-center md:items-center text-sm ">
-              <SlLocationPin className="md:mt-0 mt-1" />
-              <p> {cause.description}</p>
+              <div className="w-3"><SlLocationPin className="md:mt-0 mt-1" /></div>
+              <p className="truncate overflow-hidden whitespace-nowrap"> {cause.description}</p>
             </div>
           </div>
         </div>

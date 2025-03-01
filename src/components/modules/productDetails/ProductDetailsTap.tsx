@@ -14,7 +14,6 @@ const ProductDetailsTap = ({ id }: { id: string }) => {
 
   const { data: completedCauses, isFetching: completedIsFetching } =
     useTempleCompleteCausesQuery(id);
-  console.log(completedCauses);
 
   if (fundingIsFetching || completedIsFetching) {
     return <Spinner />;

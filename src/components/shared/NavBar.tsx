@@ -2,7 +2,7 @@
 import logo from "../../../public/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FaRegUserCircle } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
 import {
@@ -16,11 +16,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useGetMeQuery } from "@/redux/features/auth/authApi";
+import { useAppDispatch } from "@/redux/hooks";
+import { logout } from "@/redux/features/auth/authSlice";
+import { removeCookie } from "@/utils/setCookies";
 
 const Navbar = () => {
-  const pathName = usePathname();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const pathName = usePathname();
+  const dispatch = useAppDispatch();
   const { data } = useGetMeQuery(undefined);
+  const router = useRouter();
 
   const userData = data?.data;
 
@@ -49,6 +54,12 @@ const Navbar = () => {
 
   const handleNavLinkClick = () => {
     setIsSheetOpen(false);
+  };
+
+  const handleLolgout = () => {
+    dispatch(logout());
+    removeCookie('token')
+    router.push("/login");
   };
   return (
     <div className="flex justify-between items-center gap-3 relative z-40">
@@ -113,22 +124,38 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <div className=" flex gap-2 items-center md:px-4 px-2 md:py-2 py-[2px] rounded-full bg-white">
-        {userData?.profileImage ? (
-          <Image
-            src={userData?.profileImage}
-            height={1000}
-            width={1000}
-            alt="profile"
-          />
-        ) : (
-          <FaRegUserCircle className="md:text-4xl text-2xl rounded-full" />
-        )}
-        <div className="">
-          <p className="text-sm">{userData?.fullName}</p>
-          <p className="font-medium text-sm">{userData?.role}</p>
+      {userData ? (
+        <div className="flex gap-3">
+          <div className=" flex gap-2 items-center md:px-4 px-2 md:py-2 py-[2px] rounded-full bg-white">
+            {userData?.profileImage ? (
+              <Image
+                src={userData?.profileImage}
+                height={1000}
+                width={1000}
+                alt="profile"
+              />
+            ) : (
+              <FaRegUserCircle className="md:text-4xl text-2xl rounded-full" />
+            )}
+            <div className="">
+              <p className="text-sm">{userData?.fullName}</p>
+              <p className="font-medium text-sm">{userData?.role}</p>
+            </div>
+          </div>
+          <button
+            onClick={handleLolgout}
+            className="bg-primary px-8 py-3 rounded-full hover:bg-white duration-300"
+          >
+            Logout
+          </button>
         </div>
-      </div>
+      ) : (
+        <Link href={"/login"}>
+          <button className="bg-primary px-8 py-3 rounded-full hover:bg-white duration-300">
+            Login
+          </button>
+        </Link>
+      )}
     </div>
   );
 };

@@ -62,7 +62,7 @@ const DeleteModal = ({ id, type }: DeleteModalProps) => {
           <DialogTitle>
             <div className="flex flex-col justify-center items-center gap-5 text-center">
               <h3 className="text-xl font-medium">
-                Are you sure you want to delete this Temple
+                Are you sure you want to proceed?
               </h3>
               <div className="flex md:gap-5 gap-3">
                 <button
@@ -75,7 +75,7 @@ const DeleteModal = ({ id, type }: DeleteModalProps) => {
                   onClick={handleDelete}
                   className="bg-green-500 py-2 px-6 rounded-full"
                 >
-                  confirm
+                  Confirm
                 </button>
               </div>
             </div>

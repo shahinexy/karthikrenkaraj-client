@@ -5,6 +5,7 @@ import MyFormWrapper from "@/components/form/MyFormWrapper";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { setUser, TUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import { setCookie } from "@/utils/setCookies";
 import { varifyToken } from "@/utils/varifyToken";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -22,13 +23,19 @@ const LoginForm = () => {
     try {
       const res = await login(data).unwrap();
       const user = varifyToken(res.data.token) as TUser;
-      dispatch(setUser({ user, token: res.data.token }));
 
-      toast.success("Login success", { id: toastId });
+      if (user?.role !== "ADMIN") {
+        return toast.error("Unauthorize Access", { id: toastId });
+      } else {
+        setCookie(res.data.token);
+        dispatch(setUser({ user, token: res.data.token }));
 
-      router.push("/");
+        toast.success("Login success", { id: toastId });
+
+        router.push("/");
+      }
     } catch (err: any) {
-      toast.error(err.data?.message || "Faild to login");
+      toast.error(err.data?.message || "Faild to login", { id: toastId });
     }
   };
   return (
