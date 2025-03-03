@@ -83,6 +83,16 @@ const causeApi = baseApi.injectEndpoints({
       },
     }),
 
+    allCausesForAdmin: builder.query({
+      query: () => {
+        return {
+          url: `/suggest/admin/all`,
+          method: "GET",
+        };
+      },
+    }),
+
+ 
   }),
 });
 
@@ -94,5 +104,6 @@ export const {
   useTempleFundingCausesQuery,
   useTempleCompleteCausesQuery,
   useDeleteCauseMutation,
-  useCauseCategoryQuery
+  useCauseCategoryQuery,
+  useAllCausesForAdminQuery
 } = causeApi;

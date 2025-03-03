@@ -7,13 +7,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllUserQuery } from "@/redux/features/user/user.api";
 import { TUser } from "@/types/user.type";
 import Spinner from "@/components/modules/common/Spinner";
+import { useAllCausesForAdminQuery } from "@/redux/features/cause/cause.api";
+import CausesUpdateModal from "./CausesUpdateModal";
 
 const CausesTable = () => {
-  const { data, isFetching } = useGetAllUserQuery(undefined);
-
+  const { data, isFetching } = useAllCausesForAdminQuery(undefined);
+console.log(data?.data);
   if (isFetching) {
     return <Spinner />;
   }
@@ -43,17 +44,17 @@ const CausesTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.data?.data.map((user: TUser, idx: string) => (
-            <TableRow key={user.id} className="text-[#0C0B21B2] text-center">
+          {data?.data.map((data: any, idx: string) => (
+            <TableRow key={data.id} className="text-[#0C0B21B2] text-center">
               <TableCell className="py-3">{idx + 1}</TableCell>
-              <TableCell>{user?.fullName}</TableCell>
-              <TableCell>{user?.email}</TableCell>
-              <TableCell>{user?.phoneNumber}</TableCell>
-              <TableCell>In-progress</TableCell>
+              <TableCell>{data?.temple?.name}</TableCell>
+              <TableCell>{data?.cause?.name}</TableCell>
+              <TableCell>{data?.totalAmount}</TableCell>
+              <TableCell>{data?.status}</TableCell>
               <TableCell>
-                <button className="bg-primary md:px-4 px-2 md:py-2 py-1 rounded-full">
-                  Update
-                </button>
+                <div className="flex justify-center">
+                <CausesUpdateModal />
+                </div>
               </TableCell>
             </TableRow>
           ))}
