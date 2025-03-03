@@ -26,5 +26,14 @@ export async function middleware(request: NextRequest) {
 
 // "Matching Paths"
 export const config = {
-  matcher: ["/((?!login|api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/",
+    "/temple",
+    "/user",
+    "/setting",
+    "/cause",
+    "/product",
+    "/product/:page",
+    "/single-temple/:path*"
+  ],
 };

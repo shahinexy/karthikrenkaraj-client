@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
-import flower from "../../../../../public/images/flower.png";
 
 const TampleCauseCard = (cause: any) => {
-  console.log(cause?.cause?.cause);
   const causeData = cause?.cause?.cause;
+
+  const { totalAmount } = cause?.cause;
+
   return (
     <div className="space-y-1">
       <Image
@@ -19,7 +20,7 @@ const TampleCauseCard = (cause: any) => {
       </h3>
       <div className="flex justify-center">
         {/* <p>1 Items</p> */}
-        <p className="text-[#68A678] md:text-xl font-semibold">$100</p>
+        <p className="text-[#68A678] md:text-xl font-semibold">{totalAmount}</p>
       </div>
     </div>
   );
