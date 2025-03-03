@@ -34,7 +34,7 @@ const LoginForm = () => {
 
         setTimeout(() => {
           router.push("/");
-        }, 500);
+        }, 1000);
       }
     } catch (err: any) {
       toast.error(err.data?.message || "Faild to login", { id: toastId });

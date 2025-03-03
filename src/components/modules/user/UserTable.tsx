@@ -14,7 +14,7 @@ import Spinner from "@/components/modules/common/Spinner";
 
 const UserTable = () => {
   const { data, isFetching } = useGetAllUserQuery(undefined);
-
+console.log(data);
   if (isFetching) {
     return <Spinner />;
   }

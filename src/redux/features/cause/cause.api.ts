@@ -1,6 +1,6 @@
 import baseApi from "@/redux/api/baseApi";
 
-import { TQueryParams,  } from "@/types/globalType";
+import { TQueryParams } from "@/types/globalType";
 
 const causeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -90,9 +90,30 @@ const causeApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["Causes"],
     }),
 
- 
+    updateSuggestCauses: builder.mutation({
+      query: (arg) => {
+        return {
+          url: `/suggest/admin/update-price/${arg.id}`,
+          method: "PUT",
+          body: arg.data,
+        };
+      },
+      invalidatesTags: ["Causes"],
+    }),
+
+    addLinksToSgussedCaues: builder.mutation({
+      query: (arg) => {
+        return {
+          url: `/suggest/admin/add/link/${arg.id}`,
+          method: "PUT",
+          body: arg.data,
+        };
+      },
+      invalidatesTags: ["Causes"],
+    }),
   }),
 });
 
@@ -105,5 +126,7 @@ export const {
   useTempleCompleteCausesQuery,
   useDeleteCauseMutation,
   useCauseCategoryQuery,
-  useAllCausesForAdminQuery
+  useAllCausesForAdminQuery,
+  useUpdateSuggestCausesMutation,
+  useAddLinksToSgussedCauesMutation
 } = causeApi;

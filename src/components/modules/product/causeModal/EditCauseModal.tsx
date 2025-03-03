@@ -4,6 +4,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -38,7 +39,7 @@ const EditCauseModal = ({ id }: { id: string }) => {
     if (causeData?.data) {
       setCauseImages(causeData.data.images || []);
     }
-  }, [causeData]);
+  }, [causeData, open]);
 
   // causes category options
   const causeOptions = causeCategory?.data.map(
@@ -64,9 +65,9 @@ const EditCauseModal = ({ id }: { id: string }) => {
   // form submit handler
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Updating Cause...");
-console.log('row',data);
-    const price = Number.parseFloat(data.price);
-    const quantity = Number.parseInt(data.quantity, 10);
+
+    const price = Number(data.price);
+    const quantity = Number(data.quantity);
 
     if (isNaN(price) || price <= 0) {
       toast.error("Invalid price. Please enter a valid number.");
@@ -102,14 +103,14 @@ console.log('row',data);
 
     // Add the JSON data
     formData.append("data", JSON.stringify(formattedData));
-    console.log(Object.fromEntries(formData));
+
     const causeData = {
       id,
       data: formData,
     };
 
     try {
-      const res:any = await updateCause(causeData);
+      const res: any = await updateCause(causeData);
       if ("data" in res) {
         toast.success("Updated Successfully", { id: toastId });
         setOpen(false);
@@ -160,6 +161,7 @@ console.log('row',data);
                   </div>
                 </div>
               </DialogTitle>
+              <DialogDescription ></DialogDescription>
 
               <div className="space-y-2">
                 <h1 className="md:text-3xl font-medium">Remove Images</h1>

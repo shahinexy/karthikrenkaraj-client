@@ -3,6 +3,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -83,6 +84,8 @@ const AddTampleModal = () => {
                   </div>
                 </div>
               </DialogTitle>
+
+              <DialogDescription></DialogDescription>
 
               <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5 gap-1">
                 <div className="space-y-2">

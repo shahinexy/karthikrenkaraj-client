@@ -3,6 +3,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -43,7 +44,7 @@ const EditTampleModal = ({ id }: { id: string }) => {
     };
 
     try {
-      const res:any = await updateTemple(templeData);
+      const res: any = await updateTemple(templeData);
       if (res.data) {
         toast.success("Updated Successfully", { id: toastId });
         setOpen(false);
@@ -92,6 +93,8 @@ const EditTampleModal = ({ id }: { id: string }) => {
                   </div>
                 </div>
               </DialogTitle>
+
+              <DialogDescription></DialogDescription>
 
               <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5 gap-3">
                 <div className="space-y-2">

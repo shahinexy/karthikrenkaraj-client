@@ -2,6 +2,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -54,6 +55,8 @@ const AddCategoryModal = () => {
                   </div>
                 </div>
               </DialogTitle>
+
+              <DialogDescription></DialogDescription>
               <div className="space-y-2">
                 <h3 className="md:text-3xl font-medium">Cause Category</h3>
                 <MyFormSelect

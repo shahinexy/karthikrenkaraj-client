@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   Table,
@@ -7,14 +8,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { TUser } from "@/types/user.type";
 import Spinner from "@/components/modules/common/Spinner";
 import { useAllCausesForAdminQuery } from "@/redux/features/cause/cause.api";
 import CausesUpdateModal from "./CausesUpdateModal";
+import AddLinkToCausesModal from "./AddLinkToCausesModal";
 
 const CausesTable = () => {
   const { data, isFetching } = useAllCausesForAdminQuery(undefined);
-console.log(data?.data);
+
   if (isFetching) {
     return <Spinner />;
   }
@@ -41,6 +42,9 @@ console.log(data?.data);
             <TableHead className="text-[#0C0B21B2] font-normal text-center">
               Action
             </TableHead>
+            <TableHead className="text-[#0C0B21B2] font-normal text-center">
+              Link
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -53,7 +57,12 @@ console.log(data?.data);
               <TableCell>{data?.status}</TableCell>
               <TableCell>
                 <div className="flex justify-center">
-                <CausesUpdateModal />
+                  <CausesUpdateModal data={data} />
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="flex justify-center">
+                  <AddLinkToCausesModal data={data} />
                 </div>
               </TableCell>
             </TableRow>

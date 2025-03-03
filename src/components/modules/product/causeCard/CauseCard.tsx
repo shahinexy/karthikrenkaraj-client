@@ -26,6 +26,7 @@ const CauseCard = () => {
               width={1000}
               alt="temple"
               className="md:rounded-[18px] rounded-xl md:h-44 h-[120px] w-full"
+              priority 
             />
             <h3 className="md:text-xl text-lg font-semibold text-center md:my-2 my-[5px] truncate overflow-hidden whitespace-nowrap">
               {cause.name}
