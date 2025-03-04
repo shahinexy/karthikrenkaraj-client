@@ -66,8 +66,7 @@ const AddCauseModal = () => {
     }
 
     formData.append("data", JSON.stringify(formattedData));
-    //clg
-    // console.log("form data", Object.fromEntries(formData));
+    
     try {
       const res:any = await addCause(formData);
       if (res.data) {

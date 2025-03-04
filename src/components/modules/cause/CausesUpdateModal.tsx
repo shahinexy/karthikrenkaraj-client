@@ -98,6 +98,7 @@ const CausesUpdateModal = ({ data }: { data: any }) => {
                   </div>
                   <div className="space-x-3 flex ">
                     <button
+                      type="button"
                       onClick={() => setOpen(false)}
                       className="border border-[#0C0B2133] text-[#0C0B21] py-3 px-6 rounded-full font-normal"
                     >

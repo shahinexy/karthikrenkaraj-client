@@ -9,8 +9,6 @@ export async function middleware(request: NextRequest) {
   const token: any = cookieStore.get("token");
   const currentPath = request.nextUrl.pathname;
 
-  console.log(token);
-
   // Allow access to the login page without authentication
   if (currentPath === "/login") {
     return NextResponse.next();

@@ -24,9 +24,8 @@ const ChangePasswordForm = () => {
     const toastId = toast.loading("Updating password...");
 
     try {
-      const res = await changePass(data).unwrap();
+      await changePass(data).unwrap();
 
-      console.log(res);
       dispatch(logout());
 
       toast.success("Password changed successfully", { id: toastId });
