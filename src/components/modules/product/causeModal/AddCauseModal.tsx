@@ -86,7 +86,7 @@ const AddCauseModal = () => {
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="bg-secondary rounded-3xl md:py-[10] py-1 md:px-7 px-3 md:text-xl text-primary flex gap-2 items-center">
+      <DialogTrigger className="bg-secondary rounded-3xl md:py-[10] py-2 md:px-7 px-3 md:text-xl text-primary flex gap-2 items-center">
         <AiOutlinePlus /> Add Cause
       </DialogTrigger>
 
