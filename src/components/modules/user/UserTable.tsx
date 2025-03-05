@@ -46,7 +46,7 @@ const UserTable = () => {
               <TableCell className="py-3">{idx + 1}</TableCell>
               <TableCell>{user?.fullName}</TableCell>
               <TableCell>{user?.email}</TableCell>
-              <TableCell>{user?.phoneNumber}</TableCell>
+              <TableCell>{user?.phoneNumber || "N/A"}</TableCell>
               <TableCell>
                 <UserInfoModal user={user} />
               </TableCell>
