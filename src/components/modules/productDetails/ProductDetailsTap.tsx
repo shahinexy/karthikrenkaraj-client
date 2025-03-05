@@ -15,6 +15,8 @@ const ProductDetailsTap = ({ id }: { id: string }) => {
   const { data: completedCauses, isFetching: completedIsFetching } =
     useTempleCompleteCausesQuery(id);
 
+    console.log(completedCauses);
+
   if (fundingIsFetching || completedIsFetching) {
     return <Spinner />;
   }
@@ -43,8 +45,8 @@ const ProductDetailsTap = ({ id }: { id: string }) => {
       </TabsContent>
       <TabsContent value="completed-causes">
         <div className="grid md:grid-cols-4 grid-cols-2 md:gap-5 gap-3">
-          {completedCauses?.data.map((item:any, idx:number) => (
-            <TampleCauseCard key={idx} />
+          {completedCauses?.data.map((cause:any, idx:number) => (
+            <TampleCauseCard key={idx}  cause={cause}/>
           ))}
         </div>
       </TabsContent>
