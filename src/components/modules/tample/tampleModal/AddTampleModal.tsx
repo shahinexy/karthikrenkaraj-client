@@ -117,7 +117,6 @@ const AddTampleModal = () => {
                 <MyFormInput
                   type="text"
                   name="address"
-                  required={false}
                   inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-[50px]"
                   placeholder="Enter Temple Information Here"
                 />

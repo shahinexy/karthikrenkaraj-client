@@ -58,7 +58,7 @@ const Navbar = () => {
 
   const handleLolgout = () => {
     dispatch(logout());
-    removeCookie('token')
+    removeCookie("token");
     router.push("/login");
   };
   return (
@@ -133,6 +133,7 @@ const Navbar = () => {
                 height={1000}
                 width={1000}
                 alt="profile"
+                className="rounded-full md:w-9 w-6 md:h-9 h-6"
               />
             ) : (
               <FaRegUserCircle className="md:text-4xl text-2xl rounded-full" />

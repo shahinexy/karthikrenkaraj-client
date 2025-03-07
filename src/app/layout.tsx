@@ -11,7 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Yargo",
-  description: "starter kit for nextjs with redux with persist",
+  description: "",
 };
 
 export default function RootLayout({

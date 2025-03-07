@@ -1,5 +1,9 @@
 import SettingTab from "@/components/modules/setting/SettingTab";
+import { generateMetadata } from "@/utils/generateMetadata";
 import React from "react";
+
+export const metadata = generateMetadata("Setting", "");
+
 
 const SettingPage = () => {
   return (

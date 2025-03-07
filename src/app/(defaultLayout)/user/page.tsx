@@ -1,4 +1,7 @@
 import UserTable from "@/components/modules/user/UserTable";
+import { generateMetadata } from "@/utils/generateMetadata";
+
+export const metadata = generateMetadata("Users", "");
 
 const UserPage = () => {
   return (

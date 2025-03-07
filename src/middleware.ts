@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -17,9 +16,8 @@ export async function middleware(request: NextRequest) {
   // Redirect to login if token is not present
   if (!token) {
     return NextResponse.redirect(new URL("/login", request.url));
-  } else {
-    return NextResponse.next();
   }
+  return NextResponse.next();
 }
 
 // "Matching Paths"

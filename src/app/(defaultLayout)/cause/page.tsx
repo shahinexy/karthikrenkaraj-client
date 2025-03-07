@@ -1,4 +1,7 @@
 import CausesTable from "@/components/modules/cause/CausesTable";
+import { generateMetadata } from "@/utils/generateMetadata";
+
+export const metadata = generateMetadata("Causes", "");
 
 const CausePage = () => {
   return (

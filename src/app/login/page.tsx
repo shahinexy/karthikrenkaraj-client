@@ -1,4 +1,9 @@
 import LoginForm from "@/components/modules/auth/LoginForm";
+import { generateMetadata } from "@/utils/generateMetadata";
+
+export const metadata = generateMetadata("Login", "");
+
+
 
 export default function Page() {
   return (

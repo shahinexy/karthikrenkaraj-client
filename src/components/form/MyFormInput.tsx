@@ -81,7 +81,7 @@ const MyFormInput = ({
         name={name}
         control={control}
         defaultValue={getValues(name) ?? radioOptions?.[0]?.value ?? ""} // Ensures controlled behavior
-        rules={required ? { required: `${label} is required` } : {}}
+        rules={required ? { required: `This field is required` } : {}}
         render={({ field, fieldState: { error } }) => (
           <div className="relative">
             {/* File Input Handling */}
