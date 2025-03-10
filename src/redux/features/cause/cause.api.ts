@@ -81,6 +81,28 @@ const causeApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ['Category']
+    }),
+
+    addCauseCategory: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/type`,
+          method: "POST",
+          body: data
+        };
+      },
+      invalidatesTags: ['Category']
+    }),
+
+    deleteCauseCategory: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/type/${id}`,
+          method: "DELETE"
+        };
+      },
+      invalidatesTags: ['Category']
     }),
 
     allCausesForAdmin: builder.query({
@@ -126,6 +148,8 @@ export const {
   useTempleCompleteCausesQuery,
   useDeleteCauseMutation,
   useCauseCategoryQuery,
+  useDeleteCauseCategoryMutation,
+  useAddCauseCategoryMutation,
   useAllCausesForAdminQuery,
   useUpdateSuggestCausesMutation,
   useAddLinksToSgussedCauesMutation

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   Dialog,
@@ -12,13 +13,32 @@ import { FieldValues } from "react-hook-form";
 import { FaSave } from "react-icons/fa";
 import { useState } from "react";
 import MyFormWrapper from "@/components/form/MyFormWrapper";
-import MyFormSelect from "@/components/form/MyFormSelect";
+import { useAddCauseCategoryMutation } from "@/redux/features/cause/cause.api";
+import MyFormInput from "@/components/form/MyFormInput";
+import { toast } from "sonner";
 
 const AddCategoryModal = () => {
   const [open, setOpen] = useState(false);
+  const [addCatrgory] = useAddCauseCategoryMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    const toastId = toast.loading("Adding Category...");
+
+    try {
+      const res: any = await addCatrgory(data);
+      if (res.data) {
+        toast.success("Cause Added Successfully", { id: toastId });
+        setOpen(false);
+      } else {
+        toast.error(res?.error?.data?.message || "Failed to Add", {
+          id: toastId,
+        });
+        setOpen(false);
+      }
+    } catch (err: any) {
+      toast.error(err.data?.message || "Failed to Add");
+      setOpen(false);
+    }
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -58,11 +78,12 @@ const AddCategoryModal = () => {
 
               <DialogDescription></DialogDescription>
               <div className="space-y-2">
-                <h3 className="md:text-3xl font-medium">Cause Category</h3>
-                <MyFormSelect
-                  name="cause-category"
-                  options={[]}
-                  selectClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
+                <h3 className="md:text-3xl font-medium">Category Name</h3>
+                <MyFormInput
+                  type="text"
+                  name="name"
+                  inputClassName="md:py-5 py-3 md:px-7 px-5 rounded-full"
+                  placeholder="Enter Catrgory"
                 />
               </div>
             </MyFormWrapper>

@@ -1,13 +1,14 @@
 import CauseCard from "@/components/modules/product/causeCard/CauseCard";
+import CauseCategory from "@/components/modules/product/CauseCategory";
 import AddCategoryModal from "@/components/modules/product/causeModal/AddCategoryModal";
 import AddCauseModal from "@/components/modules/product/causeModal/AddCauseModal";
 import { generateMetadata } from "@/utils/generateMetadata";
 import React from "react";
-import { MdOutlineCategory } from "react-icons/md";
 
 export const metadata = generateMetadata("Products", "");
 
 const CauseShopPage = () => {
+
   return (
     <div className="">
       {/* hearder  */}
@@ -20,13 +21,8 @@ const CauseShopPage = () => {
         </div>
       </div>
 
-      <div className="flex gap-3">
-        <button className="flex gap-1 items-center bg-white  md:px-3 px-2 rounded-full">
-          <span className="bg-[#F5F5F5] md:p-2 p-1 rounded-full">
-            <MdOutlineCategory />
-          </span>
-          Basic Need
-        </button>
+      <div className="flex gap-3 ">
+        <CauseCategory />
 
         <AddCategoryModal />
       </div>
