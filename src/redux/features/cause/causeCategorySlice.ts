@@ -16,13 +16,10 @@ const categorySlice = createSlice({
       const { type } = action.payload;
       state.type = type;
     },
-    getCategory: (state) => {
-      state.type = null;
-    },
   },
 });
 
-export const { setCategory, getCategory } = categorySlice.actions;
+export const { setCategory } = categorySlice.actions;
 
 export default categorySlice.reducer;
 

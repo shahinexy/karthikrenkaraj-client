@@ -18,6 +18,15 @@ const UserTable = () => {
   if (isFetching) {
     return <Spinner />;
   }
+
+  if (data?.data?.data.length < 1) {
+    return (
+      <div className="flex justify-center items-center md:my-12 my-5 md:py-12 py-5 bg-white rounded-3xl">
+        <p>No Data Found</p>
+      </div>
+    );
+  }
+  
   return (
     <div>
       <Table>

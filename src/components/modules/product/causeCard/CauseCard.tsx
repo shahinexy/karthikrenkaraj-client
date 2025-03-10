@@ -14,16 +14,13 @@ const CauseCard = () => {
     category ? [{ name: "type", value: category }] : undefined
   );
 
-  console.log(category);
-
   if (isFetching) {
     return <Spinner />;
   }
 
   if (causeData?.data?.data.length < 1) {
-    console.log('hello');
     return (
-      <div className="flex justify-center items-center md:py-12 py-5">
+      <div className="flex justify-center items-center md:my-12 my-5 md:py-12 py-5 bg-white rounded-3xl">
         <p>No Data Found</p>
       </div>
     );
