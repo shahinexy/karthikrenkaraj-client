@@ -23,6 +23,7 @@ const CauseShopPage = () => {
 
       <div className="flex gap-3 ">
         <AllCategoryBtn />
+        
         <CauseCategory />
 
         <AddCategoryModal />
