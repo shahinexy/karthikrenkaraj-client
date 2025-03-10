@@ -1,14 +1,14 @@
 import CauseCard from "@/components/modules/product/causeCard/CauseCard";
-import CauseCategory from "@/components/modules/product/CauseCategory";
+import CauseCategory from "@/components/modules/product/causesCategory/CauseCategory";
 import AddCategoryModal from "@/components/modules/product/causeModal/AddCategoryModal";
 import AddCauseModal from "@/components/modules/product/causeModal/AddCauseModal";
 import { generateMetadata } from "@/utils/generateMetadata";
 import React from "react";
+import AllCategoryBtn from "@/components/modules/product/causesCategory/AllCategoryBtn";
 
 export const metadata = generateMetadata("Products", "");
 
 const CauseShopPage = () => {
-
   return (
     <div className="">
       {/* hearder  */}
@@ -22,6 +22,7 @@ const CauseShopPage = () => {
       </div>
 
       <div className="flex gap-3 ">
+        <AllCategoryBtn />
         <CauseCategory />
 
         <AddCategoryModal />

@@ -5,12 +5,28 @@ import EditCauseModal from "../causeModal/EditCauseModal";
 import { TCause } from "@/types/cause.type";
 import { useGetAllCauseQuery } from "@/redux/features/cause/cause.api";
 import Spinner from "@/components/modules/common/Spinner";
+import { useAppSelector } from "@/redux/hooks";
+import { selectCurrentCategory } from "@/redux/features/cause/causeCategorySlice";
 
 const CauseCard = () => {
-  const { data: causeData, isFetching } = useGetAllCauseQuery(undefined);
+  const category = useAppSelector(selectCurrentCategory);
+  const { data: causeData, isFetching } = useGetAllCauseQuery(
+    category ? [{ name: "type", value: category }] : undefined
+  );
+
+  console.log(category);
 
   if (isFetching) {
     return <Spinner />;
+  }
+
+  if (causeData?.data?.data.length < 1) {
+    console.log('hello');
+    return (
+      <div className="flex justify-center items-center md:py-12 py-5">
+        <p>No Data Found</p>
+      </div>
+    );
   }
   return (
     <div className="grid lg:grid-cols-5  md:grid-cols-3 grid-cols-2 gap-3 md:gap-7 md:mt-12 mt-7">
@@ -26,14 +42,19 @@ const CauseCard = () => {
               width={1000}
               alt="temple"
               className="md:rounded-[18px] rounded-xl md:h-44 h-[120px] w-full"
-              priority 
+              priority
             />
             <h3 className="md:text-xl text-lg font-semibold text-center md:my-2 my-[5px] truncate overflow-hidden whitespace-nowrap">
               {cause.name}
             </h3>
             <div className="flex gap-1 justify-center md:items-center text-sm ">
-              <div className="w-3"><SlLocationPin className="md:mt-0 mt-1" /></div>
-              <p className="truncate overflow-hidden whitespace-nowrap"> {cause.description}</p>
+              <div className="w-3">
+                <SlLocationPin className="md:mt-0 mt-1" />
+              </div>
+              <p className="truncate overflow-hidden whitespace-nowrap">
+                {" "}
+                {cause.description}
+              </p>
             </div>
           </div>
         </div>
